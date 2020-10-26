@@ -29,13 +29,6 @@ def get_version_from_source(filename):
 
 version = get_version_from_source('src/duckietown_utils/__init__.py')
 
-# read project dependencies
-# NO - dependencies.txt is for testing dependiences - EVERYTHING PINNED
-# The requirements here must be broad.
-# dependencies_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dependencies.txt')
-# with open(dependencies_file, 'rt') as fin:
-#     dependencies = list(filter(lambda line: not line.startswith('#'), fin.read().splitlines()))
-
 install_requires = [
     'PyGeometry-z6'
 ]
