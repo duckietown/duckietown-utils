@@ -5,7 +5,7 @@ from typing import Iterator, List, Optional, Union
 import numpy as np
 
 import rosbag
-from duckietown_utils import DTBadData
+import  duckietown_code_utils as dtu
 from . import logger
 
 __all__ = ["d8n_bag_read_with_progress", "BagReadProxy", "MessagePlus"]
@@ -165,7 +165,7 @@ def d8n_bag_read_with_progress(bag, topic, yield_tuple=False):
             yield msg
     if n == 0:
         s = "Could not find any message for topic %r." % topic
-        raise DTBadData(s)
+        raise dtu.DTBadData(s)
 
     fps = n / (time.time() - first)
     logger.debug("Read %d messages for %s. Processing time: %.1f fps." % (n, topic, fps))

@@ -1,7 +1,7 @@
 tag=duckietown_utils
 
-regular_packages=duckietown_utils
-test_packages=duckietown_utils_tests
+regular_packages=duckietown_code_utils duckietown_rosbag_utils duckietown_rosdata_utils
+test_packages=duckietown_code_utils_tests
 cover_packages=$(test_packages),$(regular_packages)
 
 

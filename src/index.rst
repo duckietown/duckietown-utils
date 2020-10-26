@@ -5,7 +5,7 @@ Welcome to the Duckietown Utils documentation
    :maxdepth: 2
    :caption: Contents:
 
-   duckietown_utils/index
+   duckietown_code_utils/index
 
 
 Indices and tables

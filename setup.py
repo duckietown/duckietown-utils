@@ -28,7 +28,7 @@ def get_version_from_source(filename):
     return version
 
 
-version = get_version_from_source('src/duckietown_utils/__init__.py')
+version = get_version_from_source('src/duckietown_code_utils/__init__.py')
 
 install_requires = [
     'PyGeometry-z6',

@@ -25,12 +25,12 @@ def is_internet_connected(url=use_url, timeout=3):
                 return True
             else:
                 msg = "Man in the middle attack?"
-                msg += "\n\n" + indent(str(e.msg), "> ")
+                msg += "\n\n" + indent(str(e), "> ")
                 return False
         return True
     except ssl.CertificateError as e:
         msg = "Detected proxy; no direct connection available."
-        msg += "\n\n" + indent(e, "  > ")
+        msg += "\n\n" + indent(str(e), "  > ")
         logger.warning(msg)
         return False
     except IOError as e:

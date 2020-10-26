@@ -2,14 +2,14 @@ import cv2
 import numpy as np
 
 from sensor_msgs.msg import CompressedImage
-from duckietown_utils import NPImageBGR
+import duckietown_code_utils as dtu
 
 __all__ = [
     "d8_compressed_image_from_cv_image",
 ]
 
 
-def d8_compressed_image_from_cv_image(image_cv: NPImageBGR, same_timestamp_as=None,
+def d8_compressed_image_from_cv_image(image_cv: dtu.NPImageBGR, same_timestamp_as=None,
                                       timestamp=None) -> CompressedImage:
     """
         Create CompressedIamge from a CV BGR image.

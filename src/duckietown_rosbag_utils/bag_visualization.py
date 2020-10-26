@@ -1,10 +1,10 @@
 import os
 import shutil
-from typing import Tuple
+from typing import Optional, Tuple
+
 
 import rosbag
-from duckietown_utils.disk_hierarchy import create_tmpdir, mkdirs_thread_safe
-from duckietown_utils.instantiate_utils import indent
+import  duckietown_code_utils as dtu
 from . import logger
 from .bag_reading import BagReadProxy
 
@@ -108,13 +108,13 @@ def d8n_make_video_from_bag(bag_filename: str, topic: str, out: str, t0: Optiona
         msg += "\nstart: %s" % bag.get_start_time()
         msg += "\nend: %s" % bag.get_end_time()
         if actual_count == count:
-            msg += "\n" + indent(get_summary_of_bag_messages(bag), "  info: ")
+            msg += "\n" + dtu.indent(get_summary_of_bag_messages(bag), "  info: ")
         bag.close()
         raise NotEnoughFramesInSlice(msg)
 
     model = "bag2mp4_fixfps_limit"
 
-    tmpdir = create_tmpdir()
+    tmpdir = dtu.create_tmpdir()
     out_tmp = os.path.join(tmpdir, os.path.basename(out))
     try:
         logger.debug("Writing temp file to %s" % out_tmp)
@@ -126,7 +126,7 @@ def d8n_make_video_from_bag(bag_filename: str, topic: str, out: str, t0: Optiona
 
         dn = os.path.dirname(out)
         if not os.path.exists(dn):
-            mkdirs_thread_safe(dn)
+            dtu.mkdirs_thread_safe(dn)
 
         shutil.copyfile(out_tmp, out)
         logger.info("Created: %s" % out)

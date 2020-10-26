@@ -1,7 +1,8 @@
 import os
 from contextlib import contextmanager
 
-from duckietown_utils.mkdirs import d8n_make_sure_dir_exists
+import duckietown_code_utils as dtu
+import rosbag
 from . import logger
 
 __all__ = ["d8n_write_to_bag_context"]
@@ -14,9 +15,8 @@ def d8n_write_to_bag_context(out_bag_filename):
             bag.write(topic_name, msg)
 
     """
-    import rosbag
 
-    d8n_make_sure_dir_exists(out_bag_filename)
+    dtu.d8n_make_sure_dir_exists(out_bag_filename)
     out_bag = rosbag.Bag(out_bag_filename + ".tmp", "w")
     yield out_bag
     out_bag.close()

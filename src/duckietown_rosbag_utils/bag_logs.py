@@ -4,8 +4,8 @@ from typing import Optional
 import numpy as np
 
 import rosbag
-from duckietown_utils.expand_variables import expand_environment
-from duckietown_utils.image_conversions import rgb_from_ros
+import duckietown_code_utils as dtu
+from duckietown_rosdata_utils.image_conversions import rgb_from_ros
 from . import logger
 from .bag_info import get_image_topic
 from .bag_reading import BagReadProxy
@@ -50,7 +50,7 @@ def d8n_read_all_images(filename: str, t0: Optional[float] = None, t1: Optional[
 
     """
 
-    filename = expand_environment(filename)
+    filename = dtu.expand_environment(filename)
     if not os.path.exists(filename):
         msg = f"File does not exist: {filename!r}"
         raise ValueError(msg)

@@ -3,7 +3,7 @@ from collections import namedtuple, OrderedDict
 
 from contracts.utils import check_isinstance
 
-import duckietown_utils as dtu
+import duckietown_code_utils as dtu
 
 
 def expect(data, query, result_keys, filters=None):

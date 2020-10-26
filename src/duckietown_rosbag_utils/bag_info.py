@@ -4,7 +4,7 @@ import subprocess
 from typing import List, NewType, Tuple
 
 import rosbag
-from duckietown_utils import get_cached, yaml_load_plain
+from duckietown_code_utils import get_cached, yaml_load_plain
 from sensor_msgs.msg import CameraInfo
 from . import logger
 from .bag_reading import BagReadProxy

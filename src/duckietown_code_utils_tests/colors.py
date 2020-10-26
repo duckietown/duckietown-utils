@@ -1,7 +1,7 @@
 from nose.tools import nottest
 from termcolor import colored
 
-import duckietown_utils as dtu
+import duckietown_code_utils as dtu
 
 def test_color_sizes():
     s1 = "one"

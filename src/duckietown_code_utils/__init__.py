@@ -1,6 +1,6 @@
 """
 
-The `duckietown_utils` library provides utilities and common functionalities used by
+The `duckietown_code_utils` library provides utilities and common functionalities used by
 many Python modules in Duckietown.
 
 """
@@ -80,20 +80,3 @@ except:
 
 # this is from the exercises
 from .augmented_reality_utils import *  # XXX: TODO: move away
-
-if False:
-    __all__ = []
-    for c in list(locals()):
-        v = eval(c)
-        if hasattr(v, "__module__"):
-            if v.__module__.startswith("duckietown_utils"):
-                v.__module__ = "duckietown_utils"
-                __all__.append(c)
-
-
-try:
-    import rosbag
-except ImportError:
-    logger.warn('Could not import rosbag; disabling ROS utils')
-else:
-    from duckietown_utils_rosbag import *
