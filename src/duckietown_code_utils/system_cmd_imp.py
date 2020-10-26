@@ -29,7 +29,6 @@ class CmdResult:
         self.stderr = stderr
         self.interrupted = interrupted
 
-    @property
     def __str__(self):
         msg = "The command: %s\n" "     in dir: %s\n" % (
             copyable_cmd(self.cmd),
