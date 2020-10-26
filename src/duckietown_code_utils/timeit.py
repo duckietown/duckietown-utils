@@ -18,7 +18,7 @@ def rospy_timeit_clock(s):
     t0 = time.process_time()
     yield
     delta = time.process_time() - t0
-    rospy.loginfo("%10d ms: %s" % (1000 * delta, s))
+    rospy.loginfo(f"{1000 * delta:10d} ms: {s}")
 
 
 @contextmanager
@@ -28,7 +28,7 @@ def rospy_timeit_wall(s):
     t0 = time.time()
     yield
     delta = time.time() - t0
-    rospy.loginfo("%10d ms: %s" % (1000 * delta, s))
+    rospy.loginfo(f"{1000 * delta:10d} ms: {s}")
 
 
 class Stack(object):
@@ -49,7 +49,7 @@ def timeit_generic(desc, minimum, time_function):
             return
     if DuckietownConstants.show_timeit_benchmarks or (minimum is not None):
         pre = "   " * len(Stack.stack)
-        msg = "timeit_clock: %s %6.2f ms  for %s" % (pre, delta * 1000, desc)
+        msg = f"timeit_clock: {pre} {delta * 1000:6.2f} ms  for {desc}"
         #        t0 = time_function()
         print(msg)
 
@@ -59,12 +59,12 @@ def timeit_generic(desc, minimum, time_function):
 
 
 @contextmanager
-def timeit_clock(desc, minimum=None):
+def timeit_clock(desc: str, minimum: float = None):
     with timeit_generic(desc=desc, minimum=minimum, time_function=time.process_time):
         yield
 
 
 @contextmanager
-def timeit_wall(desc: object, minimum: object = None) -> object:
+def timeit_wall(desc: str, minimum: float = None):
     with timeit_generic(desc=desc, minimum=minimum, time_function=time.time) as f:
         yield f
