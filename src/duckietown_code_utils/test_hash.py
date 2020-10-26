@@ -6,8 +6,8 @@ import urllib.parse
 import urllib.request
 from collections import namedtuple
 
-from .logging_logger import logger
 from .caching import get_cached
+from .logging_logger import logger
 from .timeit import timeit_wall
 
 __all__ = [
@@ -15,6 +15,8 @@ __all__ = [
     "sha1_for_file",
     "create_hash_url",
     "parse_hash_url",
+    "sha1_for_file_cached",
+
 ]
 
 

@@ -8,7 +8,7 @@ import  duckietown_code_utils as dtu
 from . import logger
 from .bag_reading import BagReadProxy
 
-__all__ = ["d8n_make_video_from_bag"]
+__all__ = ["d8n_make_video_from_bag", "count_messages_in_slice", "get_summary_of_bag_messages"]
 
 
 def count_messages_in_slice(bag_filename: str, topic: str, t0, t1, stop_at=None) -> Tuple[int, int, int]:

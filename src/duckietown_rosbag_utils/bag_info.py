@@ -1,7 +1,7 @@
 import os
 import re
 import subprocess
-from typing import List, NewType, Tuple
+from typing import List, NewType, Tuple, Union
 
 import rosbag
 from duckietown_code_utils import get_cached, yaml_load_plain
@@ -16,6 +16,7 @@ __all__ = [
     "d8n_get_all_images_topic",
     "which_robot",
     "get_image_topic",
+    "read_camera_info_from_bag",
 ]
 
 BagInfoDict = NewType('BagInfoDict', dict)
@@ -39,7 +40,7 @@ def rosbag_info(bag: str) -> BagInfoDict:
     return info_dict
 
 
-def which_robot(bag: rosbag.Bag) -> str:
+def which_robot(bag: Union[rosbag.Bag, BagReadProxy]) -> str:
     pattern = r"/(\w+)/camera_node/image/compressed"
 
     topics = list(bag.get_type_and_topic_info()[1].keys())

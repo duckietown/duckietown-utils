@@ -3,7 +3,6 @@ import os
 from .exceptions import DTConfigException
 
 __all__ = [
-    "get_ros_package_path",
     "expand_all",
 ]
 
@@ -24,13 +23,6 @@ def expand_all(filename):
         raise DTConfigException(msg)
     return fn
 
-
-def get_ros_package_path(package_name):
-    """ Returns the path to a package. """
-    import rospkg
-
-    rospack = rospkg.RosPack()
-    return rospack.get_path(package_name)
 
 
 # def display_filename(filename):
