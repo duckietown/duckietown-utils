@@ -18,6 +18,7 @@ __all__ = [
     "get_catkin_ws_src",
     "get_list_of_packages_in_catkin_ws",
     "is_ignored_by_catkin",
+    "get_duckietown_cache_dir",
 ]
 
 

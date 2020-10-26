@@ -11,3 +11,4 @@ else:
 
     from .image_jpg_create import *
     from .image_conversions import *
+    from .more import *

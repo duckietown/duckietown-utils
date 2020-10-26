@@ -11,7 +11,6 @@ from .locate_files_impl import locate_files
 from .logging_logger import logger
 from .memoization import memoize_simple
 from .mkdirs import d8n_make_sure_dir_exists
-from .path_utils import get_ros_package_path
 from .paths import get_duckietown_cache_dir
 from .test_hash import get_md5, parse_hash_url
 from .yaml_pretty import yaml_load_plain
@@ -33,6 +32,7 @@ def get_dropbox_urls():
     sources.append(dirname)
 
     try:
+        from duckietown_rosdata_utils.more import get_ros_package_path
         sources.append(get_ros_package_path("easy_logs"))
     except:
         pass  # XXX
