@@ -6,7 +6,7 @@ import numpy as np
 
 from .exception_utils import check_isinstance
 from .image_operations import gray2rgb
-from .types import NPImage
+from .types import Color8, NPImage
 
 
 def d8_image_zoom_linear(cv_image: NPImage, ratio: int = 4) -> NPImage:
@@ -18,7 +18,9 @@ def d8_image_zoom_linear(cv_image: NPImage, ratio: int = 4) -> NPImage:
     return res
 
 
-def d8_image_resize_no_interpolation(cv_image: NPImage, new_shape: Tuple[int, int]) -> NPImage:
+def d8_image_resize_no_interpolation(
+    cv_image: NPImage, new_shape: Tuple[int, int]
+) -> NPImage:
     """
         new_shape = (H, W)
     """
@@ -27,7 +29,9 @@ def d8_image_resize_no_interpolation(cv_image: NPImage, new_shape: Tuple[int, in
     return res
 
 
-def d8_image_resize_fit(cv_image: NPImage, W: int, interpolation=cv2.INTER_LINEAR) -> NPImage:
+def d8_image_resize_fit(
+    cv_image: NPImage, W: int, interpolation=cv2.INTER_LINEAR
+) -> NPImage:
     """
         Resize the image such that it fits in exactly width = W.
     """
@@ -48,7 +52,7 @@ def d8_image_resize_fit_height(cv_image: NPImage, H: int) -> NPImage:
 
 
 def d8_image_resize_fit_in_rect(
-    img: NPImage, shape: Tuple[int, int], bgcolor=(128, 128, 128)
+    img: NPImage, shape: Tuple[int, int], bgcolor: Color8 = (128, 128, 128)
 ) -> NPImage:
     if img.shape[0] > shape[0]:
         img = d8_image_resize_fit_height(img, shape[0])
@@ -66,7 +70,7 @@ def d8_image_resize_fit_in_rect(
     pad1 = int((shape[1] - img.shape[1]) / 2)
 
     for i in (0, 1, 2):
-        res[pad0: pad0 + img.shape[0], pad1: pad1 + img.shape[1], i] = img[:, :, i]
+        res[pad0 : pad0 + img.shape[0], pad1 : pad1 + img.shape[1], i] = img[:, :, i]
 
     return res
 
@@ -95,8 +99,9 @@ def resize_small_images(image_dict: Dict[str, NPImage]) -> Dict[str, NPImage]:
     return d
 
 
-def resize_images_to_fit_in_rect(image_dict: Dict[str, NPImage], shape: Tuple[int, int], bgcolor) -> Dict[
-    str, NPImage]:
+def resize_images_to_fit_in_rect(
+    image_dict: Dict[str, NPImage], shape: Tuple[int, int], bgcolor: Color8
+) -> Dict[str, NPImage]:
     check_isinstance(image_dict, dict)
 
     d = {}

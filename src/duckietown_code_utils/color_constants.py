@@ -6,6 +6,7 @@ __all__ = [
     "bgr_color_from_string",
     "ColorConstants",
     "matplotlib_01_from_rgb",
+    "rgb_color_from_bgr_color",
 ]
 
 

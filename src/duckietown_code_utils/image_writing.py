@@ -10,7 +10,7 @@ from .image_operations import bgr_from_rgb
 from .image_rescaling import d8_image_resize_no_interpolation
 from .image_timestamps import add_header_to_bgr
 from .jpg import jpg_from_bgr, write_bgr_to_file_as_jpg
-from .types import NPImageBGR, NPImageRGB
+from .types import BGRColor8, NPImageBGR, NPImageRGB
 
 
 def write_bgr_as_jpg(bgr: NPImageBGR, filename: str) -> None:
@@ -28,7 +28,9 @@ def write_image_as_jpg(image: NPImageBGR, filename: str) -> None:
 
 
 @deprecated("use write_bgr_images_as_jpgs")
-def write_jpgs_to_dir(name2image: Dict[str, NPImageBGR], dirname: str) -> Dict[str, NPImageBGR]:
+def write_jpgs_to_dir(
+    name2image: Dict[str, NPImageBGR], dirname: str
+) -> Dict[str, NPImageBGR]:
     return write_bgr_images_as_jpgs(name2image, dirname)
 
 
@@ -36,7 +38,7 @@ def write_bgr_images_as_jpgs(
     name2image: Dict[str, NPImageBGR],
     dirname: Optional[str],
     extra_string: str = None,
-    bgcolor=ColorConstants.BGR_DUCKIETOWN_YELLOW,
+    bgcolor: BGRColor8 = ColorConstants.BGR_DUCKIETOWN_YELLOW,
 ) -> Dict[str, NPImageBGR]:
     """
         Write a set of images to a directory.
