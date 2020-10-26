@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 from sensor_msgs.msg import CompressedImage
-from .types import NPImageBGR
+from duckietown_utils import NPImageBGR
 
 __all__ = [
     "d8_compressed_image_from_cv_image",
