@@ -54,6 +54,7 @@ from .system_cmd_imp import *
 from .test_hash import *
 from .text_utils import *
 from .timeit import *
+from .types import *
 from .type_checks import *
 from .unit_tests import *
 from .wildcards import *

@@ -3,7 +3,7 @@ from typing import NewType, Tuple, TYPE_CHECKING
 import numpy as np
 
 __all__ = ["NPImage", "NPImageBGR", "NPImageRGB", 'NPImageGray', 'BGRColor8', 'RGBColor8', 'RGBColor01',
-           'Color8', 'Color01']
+           'Color8', 'Color01', 'ColorString']
 
 if TYPE_CHECKING:
     NPImage = NewType("NPImage", np.ndarray)
@@ -19,6 +19,7 @@ BGRColor8 = NewType('BGRColor8', Color8)
 RGBColor8 = NewType('RGBColor8', Color8)
 Color01 = Tuple[float, float, float]
 RGBColor01 = NewType('RGBColor01', Color01)
+""" used by matplotlib """
 BGRColor01 = NewType('BGRColor01', Color01)
 
-""" used by matplotlib """
+ColorString = NewType('ColorString', str)

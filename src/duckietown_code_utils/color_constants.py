@@ -1,6 +1,6 @@
 from typing import cast
 
-from .types import BGRColor8, RGBColor01, RGBColor8
+from .types import BGRColor8, ColorString, RGBColor01, RGBColor8
 
 __all__ = [
     "bgr_color_from_string",
@@ -15,13 +15,13 @@ def rgb_color_from_bgr_color(c: BGRColor8) -> RGBColor8:
 
 
 class ColorConstants:
-    STR_WHITE = "white"
-    STR_YELLOW = "yellow"
-    STR_RED = "red"
-    STR_BLACK = "black"
-    STR_GRAY = "gray"
-    STR_GREEN = "green"
-    STR_BLUE = "blue"
+    STR_WHITE = cast(ColorString, "white")
+    STR_YELLOW = cast(ColorString, "yellow")
+    STR_RED = cast(ColorString, "red")
+    STR_BLACK = cast(ColorString, "black")
+    STR_GRAY = cast(ColorString, "gray")
+    STR_GREEN = cast(ColorString, "green")
+    STR_BLUE = cast(ColorString, "blue")
 
     BLACK = (0, 0, 0)  # XXX
     BGR_RED: BGRColor8 = (0, 0, 255)
@@ -48,7 +48,7 @@ def matplotlib_01_from_rgb(c: RGBColor8) -> RGBColor01:
     return mcolor
 
 
-def bgr_color_from_string(s: str) -> BGRColor8:
+def bgr_color_from_string(s: ColorString) -> BGRColor8:
     d = {
         ColorConstants.STR_YELLOW: ColorConstants.BGR_YELLOW,
         ColorConstants.STR_WHITE: ColorConstants.BGR_WHITE,
