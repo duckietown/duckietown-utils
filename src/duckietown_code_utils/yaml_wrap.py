@@ -125,7 +125,7 @@ def look_everywhere_for_config_files(
 
     logger.debug(f"Reading configuration files with pattern {pattern}.")
 
-    results = OrderedDict()
+    results = {}
     for s in sources:
         filenames = locate_files(s, pattern)
         for filename in filenames:

@@ -112,6 +112,10 @@ def get_machines_files_path() -> str:
 
 def get_catkin_ws_src() -> str:
     """ Returns the path to the src/ dir in catkin_ws """
+    if "CATKIN_WS_DIR" in os.environ:
+        d = os.environ["CATKIN_WS_DIR"]
+        return os.path.join(d, "src")
+
     duckietown_root = get_duckietown_root()
     machines = os.path.join(duckietown_root, "catkin_ws/src")
     return machines
