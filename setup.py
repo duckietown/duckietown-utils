@@ -1,5 +1,5 @@
 from setuptools import find_packages, setup
- 
+
 line = 'daffy'
 package_name = f'duckietown-utils-{line}'
 library_webpage = 'http://github.com/duckietown/duckietown-utils'
@@ -8,6 +8,7 @@ maintainer_email = 'admin@duckietown.org'
 short_description = ''
 full_description = """
 """
+
 
 # Read version from the __init__ file
 def get_version_from_source(filename):
@@ -25,6 +26,7 @@ def get_version_from_source(filename):
         raise ValueError(filename)
     return version
 
+
 version = get_version_from_source('src/duckietown_utils/__init__.py')
 
 # read project dependencies
@@ -34,7 +36,9 @@ version = get_version_from_source('src/duckietown_utils/__init__.py')
 # with open(dependencies_file, 'rt') as fin:
 #     dependencies = list(filter(lambda line: not line.startswith('#'), fin.read().splitlines()))
 
-install_requires = []
+install_requires = [
+    'PyGeometry-z6'
+]
 tests_require = []
 
 # compile description
@@ -47,7 +51,7 @@ description = """
 """.format(name=package_name, short=short_description, long=full_description, underline=underline)
 
 console_scripts = [
-    #"dt-pc-demo = duckietown_pondcleaner:dt_pc_demo",
+    # "dt-pc-demo = duckietown_pondcleaner:dt_pc_demo",
 ]
 # setup package
 setup(

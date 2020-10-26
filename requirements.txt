@@ -23,3 +23,6 @@ sphinx
 sphinx-rtd-theme
 
 jupyter
+
+
+PyGeometry-z6
