@@ -28,3 +28,5 @@ jupyter
 PyGeometry-z6
 comptests-z6
 opencv-python
+ruamel.yaml
+ruamel.yaml.clib
