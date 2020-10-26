@@ -5,6 +5,8 @@ many Python modules in Duckietown.
 
 """
 
+__version__ = '1.0.0'
+
 # Use the PyGeometry library as dtu.geo
 import geometry as geo
 
@@ -68,7 +70,7 @@ from .yaml_wrap import *
 
 # from .cli import *
 try:
-    import frozendict  @UnresolvedImport
+    import frozendict
 except:
     msg = "frozendict not installed."
     msg += "\n\nTry the following:"
@@ -85,12 +87,6 @@ except:
 
 # this is from the exercises
 from .augmented_reality_utils import *  # XXX: TODO: move away
-
-# from .draw import *
-# from .cli import *
-
-# Make sure that all variables look like they are
-# in the duckietown_utils module, not duckietown_utils
 
 if False:
     __all__ = []
