@@ -11,7 +11,7 @@ __all__ = [
 
 def rgb_color_from_bgr_color(c: BGRColor8) -> RGBColor8:
     B, G, R = 0, 1, 2
-    return c[R], c[G], c[B]
+    return cast(RGBColor8, (c[R], c[G], c[B]))
 
 
 class ColorConstants:
