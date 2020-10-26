@@ -27,3 +27,4 @@ jupyter
 
 PyGeometry-z6
 comptests-z6
+opencv-python

@@ -19,7 +19,7 @@ class Shared:
     p = None
 
 
-class CmdResult(object):
+class CmdResult:
     def __init__(self, cwd, cmd, ret, rets, interrupted, stdout, stderr):
         self.cwd = cwd
         self.cmd = cmd
@@ -35,7 +35,7 @@ class CmdResult(object):
         if self.interrupted:
             msg += "Was interrupted by the user\n"
         else:
-            msg += "returned: %s" % self.ret
+            msg += f"returned: {self.ret}"
         if self.rets is not None:
             msg += "\n" + indent(self.rets, "error>")
         if self.stdout:
@@ -114,12 +114,12 @@ def system_cmd_result(
                 p.stdin.write(write_stdin)
             except IOError as e:
                 #                if e.errno == 32:  # broken pipe
-                msg = "Could not write input to process."
+                # msg = "Could not write input to process."
                 msg = "Invalid executable (OSError)"
-                msg += "\n      cwd   %r" % cwd
-                msg += "\n      cmd   %s" % " ".join(cmd)
-                msg += "\n    errno   %r" % e.errno
-                msg += "\n strerror   %r" % e.strerror
+                msg += f"\n      cwd   {cwd!r}"
+                msg += f"\n      cmd   {' '.join(cmd)}"
+                msg += f"\n    errno   {e.errno!r}"
+                msg += f"\n strerror   {e.strerror!r}"
                 raise CouldNotCallProgram(msg)
             #                raise
             p.stdin.flush()
@@ -131,7 +131,7 @@ def system_cmd_result(
         interrupted = False
 
     except KeyboardInterrupt:
-        logger.debug("Keyboard interrupt for:\n %s" % " ".join(cmd))
+        logger.debug(f"Keyboard interrupt for:\n {' '.join(cmd)}")
         if capture_keyboard_interrupt:
             ret = 100
             interrupted = True
@@ -139,12 +139,12 @@ def system_cmd_result(
             raise
     except OSError as e:
         msg = "Invalid executable (OSError)"
-        msg += "\n      cwd   %r" % cwd
-        msg += "\n   cmd[0]   %r" % cmd[0]
-        msg += "\n    errno   %r" % e.errno
-        msg += "\n strerror   %r" % e.strerror
-        msg += "\n filename   %r" % e.filename
-        msg += "\n rest   %s" % e
+        msg += f"\n      cwd   {cwd!r}"
+        msg += f"\n   cmd[0]   {cmd[0]!r}"
+        msg += f"\n    errno   {e.errno!r}"
+        msg += f"\n strerror   {e.strerror!r}"
+        msg += f"\n filename   {e.filename!r}"
+        msg += f"\n rest   {e}"
         raise CouldNotCallProgram(msg)
 
     #         interrupted = False
@@ -165,10 +165,10 @@ def system_cmd_result(
     captured_stdout = remove_empty_lines(captured_stdout)
     captured_stderr = remove_empty_lines(captured_stderr)
     if display_stdout and captured_stdout:
-        s += indent((captured_stdout), "stdout>") + "\n"
+        s += indent(captured_stdout, "stdout>") + "\n"
 
     if display_stderr and captured_stderr:
-        s += indent((captured_stderr), "stderr>") + "\n"
+        s += indent(captured_stderr, "stderr>") + "\n"
 
     if s:
         logger.debug(s)

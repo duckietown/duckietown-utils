@@ -30,7 +30,9 @@ def get_version_from_source(filename):
 version = get_version_from_source('src/duckietown_utils/__init__.py')
 
 install_requires = [
-    'PyGeometry-z6'
+    'PyGeometry-z6',
+    'opencv-python',
+    'comptests-z6',
 ]
 tests_require = []
 

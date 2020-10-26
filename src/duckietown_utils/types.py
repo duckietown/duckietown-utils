@@ -2,7 +2,8 @@ from typing import NewType, Tuple, TYPE_CHECKING
 
 import numpy as np
 
-__all__ = ["NPImage", "NPImageBGR", "NPImageRGB", 'NPImageGray', 'BGRColor8', 'RGBColor8', 'RGBColor01']
+__all__ = ["NPImage", "NPImageBGR", "NPImageRGB", 'NPImageGray', 'BGRColor8', 'RGBColor8', 'RGBColor01',
+           'Color8', 'Color01']
 
 if TYPE_CHECKING:
     NPImage = NewType("NPImage", np.ndarray)
@@ -13,7 +14,11 @@ if TYPE_CHECKING:
 else:
     NPImageGray = NPImageBGR = NPImageRGB = NPImage = np.ndarray
 
-BGRColor8 = Tuple[int, int, int]
-RGBColor8 = Tuple[int, int, int]
-RGBColor01 = Tuple[float, float, float]
+Color8 = Tuple[int, int, int]
+BGRColor8 = NewType('BGRColor8', Color8)
+RGBColor8 = NewType('RGBColor8', Color8)
+Color01 = Tuple[float, float, float]
+RGBColor01 = NewType('RGBColor01', Color01)
+BGRColor01 = NewType('BGRColor01', Color01)
+
 """ used by matplotlib """

@@ -5,8 +5,8 @@ from typing import Iterator, List, Optional, Union
 import numpy as np
 
 import rosbag
-from .exceptions import DTBadData
-from .logging_logger import logger
+from duckietown_utils import DTBadData
+from . import logger
 
 __all__ = ["d8n_bag_read_with_progress", "BagReadProxy", "MessagePlus"]
 

@@ -1,18 +1,17 @@
 import os
 import shutil
+from typing import Tuple
 
 import rosbag
+from duckietown_utils.disk_hierarchy import create_tmpdir, mkdirs_thread_safe
+from duckietown_utils.instantiate_utils import indent
+from . import logger
 from .bag_reading import BagReadProxy
-from .contracts_ import contract
-from .disk_hierarchy import create_tmpdir, mkdirs_thread_safe
-from .instantiate_utils import indent
-from .logging_logger import logger
 
 __all__ = ["d8n_make_video_from_bag"]
 
 
-@contract(returns="tuple(int, int)")
-def count_messages_in_slice(bag_filename, topic, t0, t1, stop_at=None):
+def count_messages_in_slice(bag_filename: str, topic: str, t0, t1, stop_at=None) -> Tuple[int, int, int]:
     """
         Counts the number of messages in a slice of time.
         Stops at stop_at, if given.
@@ -47,7 +46,8 @@ class NotEnoughFramesInSlice(Exception):
     pass
 
 
-def d8n_make_video_from_bag(bag_filename, topic, out, t0=None, t1=None):
+def d8n_make_video_from_bag(bag_filename: str, topic: str, out: str, t0: Optional[float] = None,
+                            t1: Optional[float] = None):
     """
        Creates a video out of the topic in the bag.
 
