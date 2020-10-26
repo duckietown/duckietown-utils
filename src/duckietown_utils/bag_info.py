@@ -1,6 +1,7 @@
 import os
 import re
 import subprocess
+from typing import List, NewType, Tuple
 
 import rosbag
 from sensor_msgs.msg import CameraInfo
@@ -18,8 +19,10 @@ __all__ = [
     "get_image_topic",
 ]
 
+BagInfoDict = NewType('BagInfoDict', dict)
 
-def rosbag_info_cached(filename):
+
+def rosbag_info_cached(filename: str) -> BagInfoDict:
     def f():
         return rosbag_info(filename)
 
@@ -28,20 +31,16 @@ def rosbag_info_cached(filename):
     return get_cached(cache_name, f, quiet=True)
 
 
-def rosbag_info(bag: str) -> dict:
+def rosbag_info(bag: str) -> BagInfoDict:
     msg = f"rosbag_info {bag}"
     logger.debug(msg)
     stdout = subprocess.Popen(["rosbag", "info", "--yaml", bag], stdout=subprocess.PIPE).communicate()[0]
     stdout = stdout.decode()
-    #     try:
     info_dict = yaml_load_plain(stdout)
-    #     except:
-    #         logger.error('Could not parse yaml:\n%s' % indent(stdout, '| '))
-    #         raise
     return info_dict
 
 
-def which_robot(bag):
+def which_robot(bag: rosbag.Bag) -> str:
     pattern = r"/(\w+)/camera_node/image/compressed"
 
     topics = list(bag.get_type_and_topic_info()[1].keys())
@@ -65,7 +64,7 @@ def get_image_topic(bag: rosbag.Bag) -> str:
     raise ValueError(msg)
 
 
-def d8n_get_all_images_topic(bag_filename: str):
+def d8n_get_all_images_topic(bag_filename: str) -> List[Tuple[str, type]]:
     """
         Returns the (name, type) of all topics that look like images.
     """
@@ -74,7 +73,7 @@ def d8n_get_all_images_topic(bag_filename: str):
     return d8n_get_all_images_topic_bag(bag)
 
 
-def d8n_get_all_images_topic_bag(bag, min_messages=0):
+def d8n_get_all_images_topic_bag(bag: rosbag.Bag, min_messages: int=0) -> List[Tuple[str, type]]:
     """
         Returns the (name, type) of all topics that look like images
         and that have nonzero message count.

@@ -22,7 +22,6 @@ from .caching import *
 from .col_logging import *
 from .color_constants import *
 from .constants import *
-from .constants import *
 from .contracts_ import *
 from .coords import *
 from .dates import *
