@@ -14,7 +14,7 @@ m_from_in = lambda x: x * 0.0254
 
 def norm_angle(theta):
     if np.isinf(theta) or np.isnan(theta):
-        msg = "Invalid value for theta: %s" % theta
+        msg = f"Invalid value for theta: {theta}"
         raise ValueError(msg)
 
     while theta < -np.pi:
@@ -33,7 +33,7 @@ def norm_angle_v(theta):
     """ Normalizes a vector of thetas such that all entries are in [-pi,pi] """
     pi = np.pi
     closest = np.round(theta / (2 * pi))
-    theta2 = theta - closest * 2 * pi
+    theta2 = theta - closest * 2 * pi  # FIXME: this is not used
 
     if False:
         for t in theta2:

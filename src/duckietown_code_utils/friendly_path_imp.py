@@ -17,7 +17,7 @@ __all__ = [
 ]
 
 
-def friendly_path(path, use_environment=True):
+def friendly_path(path: str, use_environment: bool = True) -> str:
     """
         Gets a friendly representation of the given path,
         using relative paths or environment variables
@@ -46,8 +46,8 @@ def friendly_path(path, use_environment=True):
                 for v in [v0, os.path.realpath(v0)]:
                     if v and v[-1] == "/":
                         v = v[:-1]
-                    if v[0] == "/":
-                        rules.append(("${%s}" % k, v))
+                    if v and v[0] == "/":
+                        rules.append((f"${{{k}}}", v))
 
     # apply longest first
     rules.sort(key=lambda x: (-len(x[1])))

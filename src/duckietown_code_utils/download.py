@@ -33,6 +33,7 @@ def get_dropbox_urls():
 
     try:
         from duckietown_rosdata_utils.more import get_ros_package_path
+
         sources.append(get_ros_package_path("easy_logs"))
     except:
         pass  # XXX
@@ -55,7 +56,7 @@ def get_dropbox_urls():
             for k, v in list(f_urls.items()):
                 urls[k] = v
 
-    msg = "Found %d urls in %s files:\n" % (len(urls), len(found))
+    msg = f"Found {len(urls):d} urls in {len(found)} files:\n"
     msg += "\n".join(found)
     if len(urls) < 10:
         msg += "\n\n the urls: {urls}"
@@ -72,12 +73,12 @@ def get_dropbox_urls():
 
 def download_if_not_exist(url: str, filename: str):
     if not os.path.exists(filename):
-        logger.info("Path does not exist: %s" % filename)
+        logger.info(f"Path does not exist: {filename}")
         download_url_to_file(url, filename)
         if not os.path.exists(filename):
             msg = "I expected download_url_to_file() to raise an error if failed."
-            msg += "\n url: %s" % url
-            msg += "\n filename: %s" % filename
+            msg += f"\n url: {url}"
+            msg += f"\n filename: {filename}"
             raise AssertionError(msg)
     return filename
 
@@ -108,8 +109,8 @@ def reporthook(count, block_size, total_size):
         return
 
     sys.stderr.write(
-        "downloaded %.2f MB of %.1fMB (%.1f%%) at %.2f MB/s in %1.f s\n"
-        % (in_MB(progress_size), in_MB(total_size), percent, speed, duration)
+        f"downloaded {in_MB(progress_size):.2f} MB of {in_MB(total_size):.1f}MB ({percent:.1f}%) at "
+        f"{speed:.2f} MB/s in {duration:1f} s\n"
     )
 
     # sys.stdout.write("\r...%d%%, %d MB, %d KB/s, %d seconds passed" %
@@ -120,13 +121,13 @@ def reporthook(count, block_size, total_size):
 
 
 def download_url_to_file(url, filename):
-    logger.info("Download from %s" % url)
+    logger.info(f"Download from {url}")
     tmp = filename + ".tmp_download_file"
     urllib.request.urlretrieve(url, tmp, reporthook)
     if not os.path.exists(filename):
         os.rename(tmp, filename)
 
-    logger.info("-> %s" % friendly_path(filename))
+    logger.info(f"-> {friendly_path(filename)}")
 
 
 def get_file_from_url(url: str) -> str:
@@ -165,7 +166,7 @@ def require_resource(basename: str, destination: Optional[str] = None) -> str:
     """
     urls = get_dropbox_urls()
     if not basename in urls:
-        msg = "No URL found for %r." % basename
+        msg = f"No URL found for {basename!r}."
         raise Exception(msg)
     else:
         url = urls[basename]

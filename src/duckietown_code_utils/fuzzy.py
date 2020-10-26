@@ -220,9 +220,14 @@ def _get_tag(x, tagname):
         return x[tagname]
     else:
         if not hasattr(x, tagname):
-            msg = 'The object of type %s does not have attribute "%s".' % (type(x).__name__, tagname)
+            msg = 'The object of type %s does not have attribute "%s".' % (
+                type(x).__name__,
+                tagname,
+            )
             try:
-                msg += "\nThe available attributes are:\n  %s" % sorted(x.__dict__.keys())
+                msg += "\nThe available attributes are:\n  %s" % sorted(
+                    x.__dict__.keys()
+                )
             except:
                 pass
             raise InvalidQueryForUniverse(msg)
@@ -261,7 +266,9 @@ class ByTag(Spec):
         self.spec = spec
 
     def __str__(self):
-        return indent(self.spec.__str__(), "", "attribute %s satisfies \n  " % self.tagname)
+        return indent(
+            self.spec.__str__, "", "attribute %s satisfies \n  " % self.tagname
+        )
 
     def match(self, x):
         if isinstance(x, dict):
@@ -271,9 +278,14 @@ class ByTag(Spec):
             val = x[self.tagname]
         else:
             if not hasattr(x, self.tagname):
-                msg = 'The object of type %s does not have attribute "%s".' % (type(x).__name__, self.tagname)
+                msg = 'The object of type %s does not have attribute "%s".' % (
+                    type(x).__name__,
+                    self.tagname,
+                )
                 try:
-                    msg += "\nThe available attributes are:\n  %s" % sorted(x.__dict__.keys())
+                    msg += "\nThe available attributes are:\n  %s" % sorted(
+                        x.__dict__.keys()
+                    )
                 except:
                     pass
                 raise InvalidQueryForUniverse(msg)

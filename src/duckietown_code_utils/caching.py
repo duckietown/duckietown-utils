@@ -17,11 +17,11 @@ def get_cached(cache_name, f, quiet="not-given", just_delete=False):
     """
 
     cache_dir = get_duckietown_cache_dir()
-    cache = os.path.join(cache_dir, "%s.cache.pickle" % cache_name)
+    cache = os.path.join(cache_dir, f"{cache_name}.cache.pickle")
 
     if just_delete:
         if os.path.exists(cache):
-            logger.info("Removing %s" % cache)
+            logger.info(f"Removing {cache}")
             os.unlink(cache)
             return
         else:
@@ -35,18 +35,18 @@ def get_cached(cache_name, f, quiet="not-given", just_delete=False):
     if os.path.exists(cache):
 
         if not should_be_quiet:
-            logger.info("Using cache %s" % friendly_path(cache))
+            logger.info(f"Using cache {friendly_path(cache)}")
 
         try:
             return safe_pickle_load(cache)
         except:
-            msg = "Removing cache that I cannot read: %s" % friendly_path(cache)
+            msg = f"Removing cache that I cannot read: {friendly_path(cache)}"
             logger.error(msg)
             os.unlink(cache)
 
     ob = f()
     if not should_be_quiet:
-        logger.info("Writing to cache %s" % friendly_path(cache))
+        logger.info(f"Writing to cache {friendly_path(cache)}")
     try:
         os.makedirs(os.path.dirname(cache))
     except:

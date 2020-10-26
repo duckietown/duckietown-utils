@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 from .contracts_ import contract
 
@@ -68,13 +69,13 @@ def remove_table_field(table, f):
         row.pop(i)
 
 
-def make_red(s):
+def make_red(s: str) -> str:
     from termcolor import colored
 
     return colored(s, "red")
 
 
-def make_row_red(row):
+def make_row_red(row: List[str]) -> List[str]:
     return [make_red(_) for _ in row]
 
 

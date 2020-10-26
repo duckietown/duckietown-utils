@@ -65,6 +65,6 @@ def timeit_clock(desc, minimum=None):
 
 
 @contextmanager
-def timeit_wall(desc, minimum=None):
+def timeit_wall(desc: object, minimum: object = None) -> object:
     with timeit_generic(desc=desc, minimum=minimum, time_function=time.time) as f:
         yield f

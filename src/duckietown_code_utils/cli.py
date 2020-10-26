@@ -18,7 +18,7 @@ class D8App(QuickAppBase, ABC):
         options = [getattr(self.options, argname), os.environ.get(envname, None)]
         options = [_ for _ in options if _ and _.strip()]
         if not options:
-            msg = "Either provide command line argument --%s or environment variable %s." % (argname, envname)
+            msg = f"Either provide command line argument --{argname} or environment variable {envname}."
             raise DTUserError(msg)
         return options[0]
 

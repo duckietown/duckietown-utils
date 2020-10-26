@@ -43,11 +43,13 @@ def yaml_write_to_file(ob, filename):
 
 def yaml_load_file(filename: str, plain_yaml: bool = False):
     if not os.path.exists(filename):
-        msg = "File does not exist: %s" % friendly_path(filename)
+        msg = f"File does not exist: {friendly_path(filename)}"
         raise ValueError(msg)
     with open(filename) as f:
         contents = f.read()
-    return interpret_yaml_file(filename, contents, f=lambda _filename, data: data, plain_yaml=plain_yaml)
+    return interpret_yaml_file(
+        filename, contents, f=lambda _filename, data: data, plain_yaml=plain_yaml
+    )
 
 
 Y = TypeVar("Y")
@@ -87,12 +89,12 @@ def interpret_yaml_file(
         try:
             return f(filename, data)
         except KeyError as e:
-            msg = 'Missing field "%s".' % e.args[0]
+            msg = f'Missing field "{e.args[0]}".'
             raise DTConfigException(msg)
 
     except DTConfigException as e:
-        msg = "Could not interpret the contents of the file using %s()\n" % f.__name__
-        msg += "   %s\n" % friendly_path(filename)
+        msg = f"Could not interpret the contents of the file using {f.__name__}()\n"
+        msg += f"   {friendly_path(filename)}\n"
         msg += "Contents:\n" + indent(contents[:300], " > ")
         raise_wrapped(DTConfigException, e, msg, compact=True)
 
@@ -112,14 +114,16 @@ def get_config_sources() -> List[str]:
     return sources
 
 
-def look_everywhere_for_config_files(pattern: str, sources: Sequence[str]) -> Dict[str, str]:
+def look_everywhere_for_config_files(
+    pattern: str, sources: Sequence[str]
+) -> Dict[str, str]:
     """
         Looks for all the configuration files by the given pattern.
         Returns a dictionary filename -> contents.
     """
     check_isinstance(sources, list)
 
-    logger.debug("Reading configuration files with pattern %s." % pattern)
+    logger.debug(f"Reading configuration files with pattern {pattern}.")
 
     results = OrderedDict()
     for s in sources:
@@ -128,11 +132,13 @@ def look_everywhere_for_config_files(pattern: str, sources: Sequence[str]) -> Di
             with open(filename) as _:
                 contents = _.read()
             results[filename] = contents
-        logger.debug("%4d files found in %s" % (len(results), friendly_path(s)))
+        logger.debug(f"{len(results):4d} files found in {s}")
     return results
 
 
-def look_everywhere_for_config_files2(pattern: str, all_yaml: Dict[str, str]) -> Dict[str, str]:
+def look_everywhere_for_config_files2(
+    pattern: str, all_yaml: Dict[str, str]
+) -> Dict[str, str]:
     """
         Looks for all the configuration files by the given pattern.
         Returns a dictionary filename -> contents.
@@ -145,7 +151,7 @@ def look_everywhere_for_config_files2(pattern: str, all_yaml: Dict[str, str]) ->
         if fnmatch.fnmatch(filename, pattern):
             results[filename] = contents
 
-    logger.debug("%4d configuration files with pattern %s." % (len(results), pattern))
+    logger.debug(f"{len(results):4d} configuration files with pattern {pattern}.")
     return results
 
 
@@ -185,7 +191,7 @@ def look_everywhere_for_files(
                     one = filename
                     two = results[basename]
                     if not same_file_content(one, two):
-                        msg = "Two files with same name but different content:\n%s\n%s" % (one, two)
+                        msg = f"Two files with same name but different content:\n{one}\n{two}"
                         if strict:
                             raise DTConfigException(msg)
                         else:
@@ -193,7 +199,7 @@ def look_everywhere_for_files(
                                 logger.error(msg)
                             continue
                     else:
-                        msg = "Two copies of same file found:\n%s\n%s" % (one, two)
+                        msg = f"Two copies of same file found:\n{one}\n{two}"
                         if not silent:
                             logger.warn(msg)
                         continue

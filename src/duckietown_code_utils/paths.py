@@ -38,7 +38,7 @@ def get_duckiefleet_root() -> str:
     if vname in os.environ:
         return _get_dir(vname)
     else:
-        msg = "The environment variable %s is not defined," % vname
+        msg = f"The environment variable {vname} is not defined,"
         msg += " so I will look for the default directories."
         logger.info(msg)
 
@@ -51,13 +51,13 @@ def get_duckiefleet_root() -> str:
         if not found:
             msg = "Could not find any of the default directories:"
             for d in defaults:
-                msg += "\n- %s" % d
+                msg += f"\n- {d}"
             raise DTConfigException(msg)
 
         if len(found) > 1:
             msg = "I found more than one match for the default directories:"
             for d in found:
-                msg += "\n- %s" % d
+                msg += f"\n- {d}"
             raise DTConfigException(msg)
 
         return found[0]
@@ -72,14 +72,14 @@ def get_duckietown_data_dirs() -> List[str]:
 
     v = DuckietownConstants.DUCKIETOWN_DATA_variable
     if not v in os.environ:
-        msg = "No env variable %s found." % v
+        msg = f"No env variable {v} found."
         raise DTConfigException(msg)
 
     s = expand_all(os.environ[v])
     dirs = []
     for dirname in s.split(":"):
         if not os.path.exists(dirname):
-            msg = "Directory mentioned in %s not found: %s" % (v, dirname)
+            msg = f"Directory mentioned in {v} not found: {dirname}"
             raise DTConfigException(msg)
         dirs.append(dirname)
 
@@ -104,7 +104,9 @@ def get_duckietown_local_log_downloads() -> str:
 def get_machines_files_path() -> str:
     """ Gets the path to the machines file. It might not exist. """
     duckietown_root = get_duckietown_root()
-    machines = os.path.join(duckietown_root, DuckietownConstants.machines_path_rel_to_root)
+    machines = os.path.join(
+        duckietown_root, DuckietownConstants.machines_path_rel_to_root
+    )
     return machines
 
 
@@ -159,13 +161,13 @@ def _get_dir(variable_name: str) -> str:
         variable is not set.
     """
     if not variable_name in os.environ:
-        msg = "Environment variable %r not defined." % variable_name
+        msg = "Environment variable {!r} not defined.".format(variable_name)
         raise DTConfigException(msg)
 
     fn = expand_all(os.environ[variable_name])
 
     if not os.path.exists(fn):
-        msg = "Could not get %s: dir does not exist: %s" % (variable_name, fn)
+        msg = f"Could not get {variable_name}: dir does not exist: {fn}"
         raise DTConfigException(msg)
 
     return fn

@@ -59,6 +59,6 @@ def bgr_color_from_string(s: ColorString) -> BGRColor8:
         ColorConstants.STR_GREEN: ColorConstants.BGR_GREEN,
     }
     if not s in d:
-        msg = "No color %r found in %s" % (s, list(d))
+        msg = f"No color {s!r} found in {list(d)}"
         raise ValueError(msg)
     return d[s]

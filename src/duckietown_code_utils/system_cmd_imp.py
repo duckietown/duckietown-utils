@@ -29,8 +29,12 @@ class CmdResult:
         self.stderr = stderr
         self.interrupted = interrupted
 
+    @property
     def __str__(self):
-        msg = "The command: %s\n" "     in dir: %s\n" % (copyable_cmd(self.cmd), self.cwd)
+        msg = "The command: %s\n" "     in dir: %s\n" % (
+            copyable_cmd(self.cmd),
+            self.cwd,
+        )
 
         if self.interrupted:
             msg += "Was interrupted by the user\n"
@@ -103,9 +107,15 @@ def system_cmd_result(
 
         assert isinstance(cmd, list)
         if display_stdout or display_stderr:
-            logger.info("$ %s" % copyable_cmd(cmd))
+            logger.info(f"$ {copyable_cmd(cmd)}")
         p = subprocess.Popen(
-            cmd, stdin=subprocess.PIPE, stdout=stdout, stderr=stderr, bufsize=0, cwd=cwd, env=env
+            cmd,
+            stdin=subprocess.PIPE,
+            stdout=stdout,
+            stderr=stderr,
+            bufsize=0,
+            cwd=cwd,
+            env=env,
         )
         #         set_term_function(p)
 
@@ -173,7 +183,9 @@ def system_cmd_result(
     if s:
         logger.debug(s)
 
-    res = CmdResult(cwd, cmd, ret, rets, interrupted, stdout=captured_stdout, stderr=captured_stderr)
+    res = CmdResult(
+        cwd, cmd, ret, rets, interrupted, stdout=captured_stdout, stderr=captured_stderr
+    )
 
     if raise_on_error:
         if res.ret != 0:
@@ -207,9 +219,9 @@ def wrap(header, s, N=30):
 
 
 def result_format(cwd, cmd, ret, stdout=None, stderr=None):
-    msg = ("Command:\n\t{cmd}\n" "in directory:\n\t{cwd}\nfailed with error {ret}").format(
-        cwd=cwd, cmd=cmd, ret=ret
-    )
+    msg = (
+        "Command:\n\t{cmd}\n" "in directory:\n\t{cwd}\nfailed with error {ret}"
+    ).format(cwd=cwd, cmd=cmd, ret=ret)
     if stdout is not None:
         msg += "\n" + wrap("stdout", stdout)
     if stderr is not None:
@@ -241,8 +253,8 @@ def indent(s, prefix, first=None):
     first = " " * (m - len(first)) + first
 
     # differnet first prefix
-    res = ["%s%s" % (prefix, line.rstrip()) for line in lines]
-    res[0] = "%s%s" % (first, lines[0].rstrip())
+    res = [f"{prefix}{line.rstrip()}" for line in lines]
+    res[0] = f"{first}{lines[0].rstrip()}"
     return "\n".join(res)
 
 
@@ -251,8 +263,7 @@ def indent_with_label(s, first):
     return indent(s, prefix, first)
 
 
-@contract(cmds="list(str)")
-def copyable_cmd(cmds):
+def copyable_cmd(cmds: List[str]) -> str:
     """ Returns the commands as a copyable string. """
 
     @contract(x="str")
