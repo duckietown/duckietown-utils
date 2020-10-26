@@ -5,8 +5,9 @@ package_name = f'duckietown-utils-{line}'
 library_webpage = 'http://github.com/duckietown/duckietown-utils'
 maintainer = 'Mack'
 maintainer_email = 'admin@duckietown.org'
-short_description = ''
+short_description = 'Miscellaneous utilities'
 full_description = """
+Miscellaneous utilities
 """
 
 
