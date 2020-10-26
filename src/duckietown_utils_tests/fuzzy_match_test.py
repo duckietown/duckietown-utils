@@ -28,8 +28,7 @@ def expect(data, query, result_keys, filters=None):
         raise Exception(msg)
 
 
-@dtu.unit_test
-def matches():
+def matches_test():
     Species = namedtuple("Species", "name size")
     data = OrderedDict(
         [
@@ -50,8 +49,7 @@ def matches():
     expect(data, "/first", ["one"])
 
 
-@dtu.unit_test
-def matches_tags():
+def matches_tags_test():
     Species = namedtuple("Species", "name size weight")
     data = OrderedDict(
         [
@@ -74,14 +72,12 @@ def matches_tags():
     expect(data, "name:*dog+name:*cat", ["fuffy", "ronny"])
 
 
-@dtu.unit_test
-def specs1():
+def specs1_test():
     dtu.parse_match_spec("ciao")
     dtu.parse_match_spec("ciao+no")
 
 
-@dtu.unit_test
-def my_filter():
+def my_filter_test():
     rc = re.compile(dtu.slice_regexp)
     m = rc.search("[1:2:3]")
     assert m.group("a") == "1"

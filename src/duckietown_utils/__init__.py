@@ -12,12 +12,7 @@ import geometry as geo
 
 _ = geo
 
-from .tcp_communication import *
-from .bag_info import *
-from .bag_logs import *
-from .bag_reading import *
-from .bag_visualization import *
-from .bag_writing import *
+
 from .caching import *
 from .col_logging import *
 from .color_constants import *
@@ -37,7 +32,6 @@ from .friendly_path_imp import *
 from .fuzzy import *
 from .image_composition import *
 from .image_conversions import *
-from .image_jpg_create import *
 from .image_operations import *
 from .image_rescaling import *
 from .image_timestamps import *
@@ -95,3 +89,11 @@ if False:
             if v.__module__.startswith("duckietown_utils"):
                 v.__module__ = "duckietown_utils"
                 __all__.append(c)
+
+
+try:
+    import rosbag
+except ImportError:
+    logger.warn('Could not import rosbag; disabling ROS utils')
+else:
+    from duckietown_utils_rosbag import *

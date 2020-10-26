@@ -1,9 +1,8 @@
+from nose.tools import nottest
 from termcolor import colored
 
 import duckietown_utils as dtu
 
-
-@dtu.unit_test
 def test_color_sizes():
     s1 = "one"
 
@@ -18,6 +17,7 @@ def test_color_sizes():
     assert l1 == l2
 
 
+@nottest
 def get_test_table():
     table = []
     for i in range(3):
@@ -28,7 +28,6 @@ def get_test_table():
     return table
 
 
-@dtu.unit_test
 def test_table():
     table = get_test_table()
     r1 = dtu.format_table_plus(table)

@@ -1,4 +1,5 @@
 import os
+from typing import Optional
 
 import numpy as np
 
@@ -16,7 +17,7 @@ __all__ = [
 ]
 
 
-def d8n_read_images_interval(filename, t0, t1):
+def d8n_read_images_interval(filename: str, t0: Optional[float], t1: Optional[float]):
     """
         Reads all the RGB data from the bag,
         in the interval [t0, t1], where t0 = 0 indicates
@@ -33,7 +34,7 @@ def d8n_read_images_interval(filename, t0, t1):
     return data
 
 
-def d8n_read_all_images(filename, t0=None, t1=None):
+def d8n_read_all_images(filename: str, t0: Optional[float]=None, t1: Optional[float]=None):
     """
         Raises a ValueError if no data could be read.
 
