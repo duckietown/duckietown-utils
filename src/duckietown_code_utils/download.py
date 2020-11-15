@@ -56,7 +56,7 @@ def get_dropbox_urls():
             for k, v in list(f_urls.items()):
                 urls[k] = v
 
-    msg = f"Found {len(urls):d} urls in {len(found)} files:\n"
+    msg = f"Found {len(urls)} urls in {len(found)} files:\n"
     msg += "\n".join(found)
     if len(urls) < 10:
         msg += f"\n\n the urls:\n{urls}"

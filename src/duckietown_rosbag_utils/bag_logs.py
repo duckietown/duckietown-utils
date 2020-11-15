@@ -25,7 +25,7 @@ def d8n_read_images_interval(filename: str, t0: Optional[float], t1: Optional[fl
 
     """
     data = d8n_read_all_images(filename, t0, t1)
-    logger.info(f"Read {len(data):d} images from {filename}.")
+    logger.info(f"Read {len(data)} images from {filename}.")
     timestamps = data["timestamp"]
     # normalize timestamps
     first = data["timestamp"][0]
@@ -34,7 +34,9 @@ def d8n_read_images_interval(filename: str, t0: Optional[float], t1: Optional[fl
     return data
 
 
-def d8n_read_all_images(filename: str, t0: Optional[float] = None, t1: Optional[float] = None):
+def d8n_read_all_images(
+    filename: str, t0: Optional[float] = None, t1: Optional[float] = None
+):
     """
         Raises a ValueError if no data could be read.
 
@@ -64,7 +66,7 @@ def d8n_read_all_images(filename: str, t0: Optional[float] = None, t1: Optional[
 
 def d8n_read_all_images_from_bag(bag, topic0, max_images=None, use_relative_time=False):
     nfound = bag.get_message_count(topic_filters=topic0)
-    logger.info(f"Found {nfound:d} images for {topic0}")
+    logger.info(f"Found {nfound} images for {topic0}")
 
     data = []
     first_timestamp = None
@@ -75,8 +77,10 @@ def d8n_read_all_images_from_bag(bag, topic0, max_images=None, use_relative_time
         interval = int(np.ceil(nfound / max_images))
         if interval == 0:
             interval = 1
-        logger.info(f"There are nfound = {nfound:d} images total and I want max_images = {max_images}")
-        logger.info(f"Therefore I will use interval = {interval:d}")
+        logger.info(
+            f"There are nfound = {nfound} images total and I want max_images = {max_images}"
+        )
+        logger.info(f"Therefore I will use interval = {interval}")
 
     rgb = None
     for j, (topic, msg, t) in enumerate(bag.read_messages(topics=[topic0])):
@@ -102,11 +106,11 @@ def d8n_read_all_images_from_bag(bag, topic0, max_images=None, use_relative_time
             break
 
         if j % 10 == 0:
-            logger.debug(f"Read {j:d} images from topic {topic}")
+            logger.debug(f"Read {j} images from topic {topic}")
 
-    logger.info(f"Returned {len(data):d} images")
+    logger.info(f"Returned {len(data)} images")
     if not data:
-        msg = "No data found for topic %s" % topic0
+        msg = f"No data found for topic {topic0}"
         raise ValueError(msg)
 
     H, W, _ = rgb.shape  # (480, 640, 3)

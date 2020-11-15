@@ -15,7 +15,7 @@ __all__ = [
 
 
 def add_duckietown_header(img, log_name, time, frame):
-    s = "Duckietown %4d  %6.2f   %s" % (frame, time, log_name)
+    s = f"Duckietown {frame:4d}  {time:6.2f}   {log_name}"
     return add_header_to_image(img, s)
 
 
