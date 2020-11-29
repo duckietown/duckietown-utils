@@ -16,6 +16,7 @@ if on_duckiebot():
 else:
     try:
         # use PyContracts if installed
+        # noinspection PyUnresolvedReferences
         from contracts import contract, all_disabled
 
         if all_disabled():

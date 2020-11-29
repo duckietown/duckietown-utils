@@ -3,6 +3,7 @@ import cv2
 from .augmented_reality_utils import load_homography, load_map
 
 
+# noinspection PyUnresolvedReferences
 class Draw:
     """class for drawing projected line segments"""
 
@@ -34,12 +35,19 @@ class Draw:
                 pixel = ground_point
             else:
                 # logger.info('Unkown reference frame. Using "axle" frame')
+                # noinspection PyUnresolvedReferences
                 pixel = self.ground2pixel(ground_point)
             pt_x.append(pixel[0])
             pt_y.append(pixel[1])
         color = segment["color"]
         color_type, [r, g, b] = defined_colors[color]
-        cv2.line(image, (pt_x[0], pt_y[0]), (pt_x[1], pt_y[1]), (b * 255, g * 255, r * 255), 5)
+        cv2.line(
+            image,
+            (pt_x[0], pt_y[0]),
+            (pt_x[1], pt_y[1]),
+            (b * 255, g * 255, r * 255),
+            5,
+        )
         return image
 
 

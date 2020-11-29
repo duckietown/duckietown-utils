@@ -39,4 +39,4 @@ def norm_angle_v(theta):
         for t in theta2:
             assert -pi <= t <= +pi
 
-    return theta
+    return theta2

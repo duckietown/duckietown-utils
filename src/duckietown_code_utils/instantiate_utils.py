@@ -12,14 +12,14 @@ def instantiate(function_name: str, parameters: Dict[str, object]):
     try:
         function = import_name(function_name)
     except ValueError as e:
-        msg = "instantiate(): Cannot find function or constructor %r:\n" % (function_name)
-        msg += indent("%s" % (e), "> ")
+        msg = f"instantiate(): Cannot find function or constructor {function_name!r}:\n"
+        msg += indent(f"{e}", "> ")
         raise SemanticMistake(msg)
 
     try:
         # XXX TypeError is too broad, we should bind the params explicitly
         return function(**parameters)
-    except TypeError as e:
+    except TypeError:
         #         params = ', '.join(['%s=%r' % (k, v) for (k, v) in parameters.items()])
         msg = "Could not call this function or instantiate this object:\n"
         msg += "\nConstructor: %s" % function_name
@@ -51,45 +51,45 @@ def import_name(name: str):
             field = tokens[-1]
             module_name = ".".join(tokens[:-1])
 
-            if False:  # previous method
-                try:
-                    module = __import__(module_name, fromlist=["dummy"])
-                except ImportError as e:
-                    msg = "Cannot load %r (tried also with %r):\n" % (name, module_name)
-                    msg += "\n" + indent("%s\n%s" % (e, traceback.format_exc()), "> ")
-                    raise ValueError(msg)
+            # if False:  # previous method
+            #     try:
+            #         module = __import__(module_name, fromlist=["dummy"])
+            #     except ImportError as e:
+            #         msg = "Cannot load %r (tried also with %r):\n" % (name, module_name)
+            #         msg += "\n" + indent("%s\n%s" % (e, traceback.format_exc()), "> ")
+            #         raise ValueError(msg)
+            #
+            #     if not field in module.__dict__:
+            #         msg = "No field  %r\n" % (field)
+            #         msg += " found in %r." % (module)
+            #         raise ValueError(msg)
+            #
+            #     return module.__dict__[field]
+            # else:
+            # other method, don't assume that in "M.x", "M" is a module.
+            # It could be a class as well, and "x" be a staticmethod.
+            try:
+                module = import_name(module_name)
+            except ImportError as e:
+                msg = "Cannot load %r (tried also with %r):\n" % (name, module_name)
+                msg += "\n" + indent("%s\n%s" % (e, traceback.format_exc()), "> ")
+                raise ValueError(msg)
 
-                if not field in module.__dict__:
-                    msg = "No field  %r\n" % (field)
-                    msg += " found in %r." % (module)
-                    raise ValueError(msg)
+            if not field in module.__dict__:
+                msg = "No field  %r\n" % field
+                msg += " found in %r." % module
+                raise ValueError(msg)
 
-                return module.__dict__[field]
+            f = module.__dict__[field]
+
+            # "staticmethod" are not functions but descriptors, we need extra magic
+            if isinstance(f, staticmethod):
+                return f.__get__(module, None)
             else:
-                # other method, don't assume that in "M.x", "M" is a module.
-                # It could be a class as well, and "x" be a staticmethod.
-                try:
-                    module = import_name(module_name)
-                except ImportError as e:
-                    msg = "Cannot load %r (tried also with %r):\n" % (name, module_name)
-                    msg += "\n" + indent("%s\n%s" % (e, traceback.format_exc()), "> ")
-                    raise ValueError(msg)
-
-                if not field in module.__dict__:
-                    msg = "No field  %r\n" % (field)
-                    msg += " found in %r." % (module)
-                    raise ValueError(msg)
-
-                f = module.__dict__[field]
-
-                # "staticmethod" are not functions but descriptors, we need extra magic
-                if isinstance(f, staticmethod):
-                    return f.__get__(module, None)
-                else:
-                    return f
+                return f
 
         else:
-            msg = "Cannot import name %r." % (name)
+            msg = "Cannot import name %r." % name
             msg += "\n" + indent(traceback.format_exc(), "> ")
             raise ValueError(msg)
 

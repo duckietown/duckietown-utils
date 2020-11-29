@@ -30,9 +30,16 @@ if on_duckiebot():
     # logger.warning('Unit tests are disabled because we are on a Duckiebot.')
 else:
     try:
-        from comptests import comptest #as unit_test
-        from comptests import run_module_tests # as run_tests_for_this_module
-        from comptests.comptests import get_comptests_output_dir # as get_output_dir_for_test
+        # noinspection PyUnresolvedReferences
+        from comptests import comptest  # as unit_test
+
+        # noinspection PyUnresolvedReferences
+        from comptests import run_module_tests  # as run_tests_for_this_module
+
+        # noinspection PyUnresolvedReferences
+        from comptests.comptests import (
+            get_comptests_output_dir,
+        )  # as get_output_dir_for_test
 
         if show_info:
             logger.warning("Using the Comptests testing framework.")
@@ -52,7 +59,6 @@ if using_fake_tests:
     @nottest
     def unit_test(f):
         return f
-
 
     @nottest
     def run_tests_for_this_module():

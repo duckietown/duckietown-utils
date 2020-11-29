@@ -65,7 +65,7 @@ def system_cmd_result(
     display_stdout=False,
     display_stderr=False,
     raise_on_error=False,
-    write_stdin="",
+    write_stdin: str = "",
     capture_keyboard_interrupt=False,
     env=None,
 ):
@@ -118,9 +118,9 @@ def system_cmd_result(
         )
         #         set_term_function(p)
 
-        if write_stdin != "":
+        if write_stdin:
             try:
-                p.stdin.write(write_stdin)
+                p.stdin.write(write_stdin.encode())
             except IOError as e:
                 #                if e.errno == 32:  # broken pipe
                 # msg = "Could not write input to process."

@@ -1,6 +1,6 @@
 from .memoization import memoize_simple
 
-__all__ = ["expand_string", "get_wildcard_matches"]
+__all__ = ["expand_string", "get_wildcard_matches", "wildcard_to_regexp"]
 
 
 def flatten(seq):
