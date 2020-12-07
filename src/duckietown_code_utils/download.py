@@ -110,7 +110,7 @@ def reporthook(count, block_size, total_size):
 
     sys.stderr.write(
         f"downloaded {in_MB(progress_size):.2f} MB of {in_MB(total_size):.1f}MB ({percent:.1f}%) at "
-        f"{speed:.2f} MB/s in {duration:1f} s\n"
+        f"{speed:.2f} MB/s in {duration:.2f} s\n"
     )
 
     # sys.stdout.write("\r...%d%%, %d MB, %d KB/s, %d seconds passed" %
