@@ -16,6 +16,7 @@ from .file_utils import read_bytes_from_file, write_data_to_file
 from .logging_logger import logger
 from .mkdirs import d8n_make_sure_dir_exists
 from .types import NPImageBGR, NPImageRGB
+from .image_operations import rgb_from_bgr
 
 
 def jpg_from_bgr(bgr: NPImageBGR) -> bytes:
@@ -65,6 +66,11 @@ def bgr_from_jpg_fn(fn: str) -> NPImageBGR:
         raise ValueError(msg)
     data = read_bytes_from_file(fn)
     return bgr_from_jpg(data)
+
+
+def rgb_from_jpg_fn(fn: str) -> NPImageRGB:
+    m = bgr_from_jpg_fn(fn)
+    return rgb_from_bgr(m)
 
 
 @deprecated("Use bgr_from_jpg()")
