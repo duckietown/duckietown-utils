@@ -11,8 +11,8 @@ __all__ = ["d8n_write_to_bag_context"]
 @contextmanager
 def d8n_write_to_bag_context(out_bag_filename):
     """
-        with d8n_write_to_bag_context(filename) as bag:
-            bag.write(topic_name, msg)
+    with d8n_write_to_bag_context(filename) as bag:
+        bag.write(topic_name, msg)
 
     """
 

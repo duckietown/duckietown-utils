@@ -44,11 +44,11 @@ def has_wildcard(s):
 # @contract(wildcard='str', universe='list(str)')
 def expand_wildcard(wildcard, universe):
     """
-        Expands a wildcard expression against the given list.
-        Raises ValueError if none found.
+    Expands a wildcard expression against the given list.
+    Raises ValueError if none found.
 
-        :param wildcard: string with '*'
-        :param universe: a list of strings
+    :param wildcard: string with '*'
+    :param universe: a list of strings
     """
     if not has_wildcard(wildcard):
         msg = "No wildcards in %r." % wildcard
@@ -65,11 +65,11 @@ def expand_wildcard(wildcard, universe):
 
 def get_wildcard_matches(wildcard, universe):
     """
-        Expands a wildcard expression against the given list.
-        Yields a sequence of strings.
+    Expands a wildcard expression against the given list.
+    Yields a sequence of strings.
 
-        :param wildcard: string with '*'
-        :param universe: a list of strings
+    :param wildcard: string with '*'
+    :param universe: a list of strings
     """
     regexp = wildcard_to_regexp(wildcard)
     for x in universe:

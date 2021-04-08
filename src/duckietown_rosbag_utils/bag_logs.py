@@ -19,9 +19,9 @@ __all__ = [
 
 def d8n_read_images_interval(filename: str, t0: Optional[float], t1: Optional[float]):
     """
-        Reads all the RGB data from the bag,
-        in the interval [t0, t1], where t0 = 0 indicates
-        the first image.
+    Reads all the RGB data from the bag,
+    in the interval [t0, t1], where t0 = 0 indicates
+    the first image.
 
     """
     data = d8n_read_all_images(filename, t0, t1)
@@ -34,21 +34,19 @@ def d8n_read_images_interval(filename: str, t0: Optional[float], t1: Optional[fl
     return data
 
 
-def d8n_read_all_images(
-    filename: str, t0: Optional[float] = None, t1: Optional[float] = None
-):
+def d8n_read_all_images(filename: str, t0: Optional[float] = None, t1: Optional[float] = None):
     """
-        Raises a ValueError if no data could be read.
+    Raises a ValueError if no data could be read.
 
-        Returns a numpy array.
+    Returns a numpy array.
 
 
-        Usage:
+    Usage:
 
-            data = d8n_read_all_images(bag)
+        data = d8n_read_all_images(bag)
 
-            print data.shape # (928,)
-            print data.dtype # [('timestamp', '<f8'), ('rgb', 'u1', (480, 640, 3))]
+        print data.shape # (928,)
+        print data.dtype # [('timestamp', '<f8'), ('rgb', 'u1', (480, 640, 3))]
 
     """
 
@@ -77,9 +75,7 @@ def d8n_read_all_images_from_bag(bag, topic0, max_images=None, use_relative_time
         interval = int(np.ceil(nfound / max_images))
         if interval == 0:
             interval = 1
-        logger.info(
-            f"There are nfound = {nfound} images total and I want max_images = {max_images}"
-        )
+        logger.info(f"There are nfound = {nfound} images total and I want max_images = {max_images}")
         logger.info(f"Therefore I will use interval = {interval}")
 
     rgb = None

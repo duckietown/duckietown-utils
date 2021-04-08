@@ -5,7 +5,7 @@ from typing import Iterator, List, Optional, Union
 import numpy as np
 
 import rosbag
-import  duckietown_code_utils as dtu
+import duckietown_code_utils as dtu
 from . import logger
 
 __all__ = ["d8n_bag_read_with_progress", "BagReadProxy", "MessagePlus"]
@@ -16,11 +16,17 @@ debug_skip = False
 
 
 class BagReadProxy:
-    def __init__(self, bag, t0: Optional[float] = None, t1: Optional[float] = None, bag_absolute_t0_ref=None):
+    def __init__(
+        self,
+        bag,
+        t0: Optional[float] = None,
+        t1: Optional[float] = None,
+        bag_absolute_t0_ref=None,
+    ):
         """
-            t0, t1 are relative times to the bag start
+        t0, t1 are relative times to the bag start
 
-            They can be None, in which case they are unbounded.
+        They can be None, in which case they are unbounded.
         """
         if not isinstance(bag, rosbag.Bag):
             raise NotImplementedError(type(bag).__name__)
@@ -110,8 +116,7 @@ class BagReadProxy:
                 yield m
         elif isinstance(self.bag, BagReadProxy):
             # XXX: never tried
-            for m in self.bag.read_messages_plus(topics=topics, connection_filter=connection_filter,
-                                                 raw=raw):
+            for m in self.bag.read_messages_plus(topics=topics, connection_filter=connection_filter, raw=raw):
                 if self.read_from_absolute <= m.time_absolute <= self.read_to_absolute:
                     yield m
 

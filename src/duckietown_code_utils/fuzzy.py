@@ -225,9 +225,7 @@ def _get_tag(x, tagname):
                 tagname,
             )
             try:
-                msg += "\nThe available attributes are:\n  %s" % sorted(
-                    x.__dict__.keys()
-                )
+                msg += "\nThe available attributes are:\n  %s" % sorted(x.__dict__.keys())
             except:
                 pass
             raise InvalidQueryForUniverse(msg)
@@ -266,9 +264,7 @@ class ByTag(Spec):
         self.spec = spec
 
     def __str__(self):
-        return indent(
-            self.spec.__str__, "", "attribute %s satisfies \n  " % self.tagname
-        )
+        return indent(self.spec.__str__, "", "attribute %s satisfies \n  " % self.tagname)
 
     def match(self, x):
         if isinstance(x, dict):
@@ -283,9 +279,7 @@ class ByTag(Spec):
                     self.tagname,
                 )
                 try:
-                    msg += "\nThe available attributes are:\n  %s" % sorted(
-                        x.__dict__.keys()
-                    )
+                    msg += "\nThe available attributes are:\n  %s" % sorted(x.__dict__.keys())
                 except:
                     pass
                 raise InvalidQueryForUniverse(msg)
@@ -435,7 +429,7 @@ filters0 = OrderedDict(
 def parse_match_spec(s, filters=None):
     """
 
-        a, b:>10 or +
+    a, b:>10 or +
     """
     rec = lambda _: parse_match_spec(_, filters=filters)
     if filters is None:
@@ -504,8 +498,8 @@ def parse_match_spec(s, filters=None):
 @contract(stuff=dict)
 def fuzzy_match(query, stuff, filters=None, raise_if_no_matches=False):
     """
-        spec: a string
-        logs: an OrderedDict str -> object
+    spec: a string
+    logs: an OrderedDict str -> object
     """
     if not isinstance(stuff, dict):
         msg = "Expectd an OrderedDict, got %s." % describe_type(stuff)

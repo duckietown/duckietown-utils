@@ -9,7 +9,14 @@ __all__ = [
 
 # @contract(returns='list(str)', directory='str',
 #           pattern='str', followlinks='bool')
-def locate_files(directory, pattern, normalize=True, followlinks=True, alsodirs=False, case_sensitive=True):
+def locate_files(
+    directory,
+    pattern,
+    normalize=True,
+    followlinks=True,
+    alsodirs=False,
+    case_sensitive=True,
+):
     # print('locate_files %r %r' % (directory, pattern))
     filenames = []
 

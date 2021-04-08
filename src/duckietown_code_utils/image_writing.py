@@ -28,9 +28,7 @@ def write_image_as_jpg(image: NPImageBGR, filename: str) -> None:
 
 
 @deprecated("use write_bgr_images_as_jpgs")
-def write_jpgs_to_dir(
-    name2image: Dict[str, NPImageBGR], dirname: str
-) -> Dict[str, NPImageBGR]:
+def write_jpgs_to_dir(name2image: Dict[str, NPImageBGR], dirname: str) -> Dict[str, NPImageBGR]:
     return write_bgr_images_as_jpgs(name2image, dirname)
 
 
@@ -41,11 +39,11 @@ def write_bgr_images_as_jpgs(
     bgcolor: BGRColor8 = ColorConstants.BGR_DUCKIETOWN_YELLOW,
 ) -> Dict[str, NPImageBGR]:
     """
-        Write a set of images to a directory.
+    Write a set of images to a directory.
 
-        name2image is a dictionary of name -> BGR mage
+    name2image is a dictionary of name -> BGR mage
 
-        Images are assumed to be BGR, [H,W,3] uint8.
+    Images are assumed to be BGR, [H,W,3] uint8.
     """
     check_isinstance(name2image, dict)
     res: Dict[str, NPImageBGR] = dict(name2image)

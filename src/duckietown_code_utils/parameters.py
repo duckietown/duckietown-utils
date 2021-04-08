@@ -25,7 +25,10 @@ class Configurable(object):
         extra = set(given) - set(required)
         missing = set(required) - set(given)
         if extra or missing:
-            msg = "Error while loading configuration for %r from %r." % (self, configuration)
+            msg = "Error while loading configuration for %r from %r." % (
+                self,
+                configuration,
+            )
             msg += "\n"
             msg += "Extra parameters: %r\n" % extra
             msg += "Missing parameters: %r\n" % missing
@@ -43,4 +46,3 @@ class Configurable(object):
 
         for p in param_names:
             setattr(self, p, configuration[p])
-

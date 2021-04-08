@@ -10,21 +10,21 @@ class DTException(Exception):
 
 class DTUserError(DTException):
     """
-        Exceptions that will not be printed with full traceback,
-        because they contain a simple message for the user, to be printed in red.
+    Exceptions that will not be printed with full traceback,
+    because they contain a simple message for the user, to be printed in red.
     """
 
 
 class DTConfigException(DTUserError):
     """
-        The configuration (either environment variables or YAML files)
-        is invalid.
+    The configuration (either environment variables or YAML files)
+    is invalid.
     """
 
 
 class DTBadData(DTException):
     """
-        A log is invalid.
+    A log is invalid.
     """
 
 
@@ -34,11 +34,11 @@ class DTNoMatches(DTUserError):
 
 def wrap_script_entry_point(function, exceptions_no_traceback=(DTUserError,)):
     """
-        Wraps the main() of a script.
-        For Exception: we exit with value 2.
+    Wraps the main() of a script.
+    For Exception: we exit with value 2.
 
-        :param exceptions_no_traceback: tuple of exceptions for which we
-         just print the error, and exit with value 1.
+    :param exceptions_no_traceback: tuple of exceptions for which we
+     just print the error, and exit with value 1.
 
     """
     try:

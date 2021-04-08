@@ -6,7 +6,10 @@ from .friendly_path_imp import friendly_path
 from .text_utils import indent
 
 Person = namedtuple("Person", "name email")
-PackageXML = namedtuple("PackageXML", ["name", "version", "maintainers", "authors", "license", "description"])
+PackageXML = namedtuple(
+    "PackageXML",
+    ["name", "version", "maintainers", "authors", "license", "description"],
+)
 
 
 def read_package_xml_info(filename):

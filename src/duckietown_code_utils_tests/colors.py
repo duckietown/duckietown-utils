@@ -3,6 +3,7 @@ from termcolor import colored
 
 import duckietown_code_utils as dtu
 
+
 def test_color_sizes():
     s1 = "one"
 

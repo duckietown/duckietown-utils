@@ -20,12 +20,12 @@ def is_gzip_filename(filename):
 @contextmanager
 def safe_write(filename, mode="wb", compresslevel=5):
     """
-        Makes atomic writes by writing to a temp filename.
-        Also if the filename ends in ".gz", writes to a compressed stream.
-        Yields a file descriptor.
+    Makes atomic writes by writing to a temp filename.
+    Also if the filename ends in ".gz", writes to a compressed stream.
+    Yields a file descriptor.
 
-        It is thread safe because it renames the file.
-        If there is an error, the file will be removed if it exists.
+    It is thread safe because it renames the file.
+    If there is an error, the file will be removed if it exists.
     """
     check_isinstance(filename, str)
     dirname = os.path.dirname(filename)
@@ -71,8 +71,8 @@ def safe_write(filename, mode="wb", compresslevel=5):
 @contextmanager
 def safe_read(filename, mode="rb"):
     """
-        If the filename ends in ".gz", reads from a compressed stream.
-        Yields a file descriptor.
+    If the filename ends in ".gz", reads from a compressed stream.
+    Yields a file descriptor.
     """
     try:
         if is_gzip_filename(filename):

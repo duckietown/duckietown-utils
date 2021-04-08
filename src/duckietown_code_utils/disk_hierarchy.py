@@ -48,9 +48,9 @@ def write_to_dir(data, d):
 
 
 def get_dt_tmp_dir():
-    """ Returns *the* temp dir for this project.
+    """Returns *the* temp dir for this project.
     Note that we need to customize with username, otherwise
-    there will be permission problems.  """
+    there will be permission problems."""
     V = DuckietownConstants.DUCKIETOWN_TMP_variable
     if V in os.environ:
         return os.environ[V]

@@ -132,8 +132,8 @@ def download_url_to_file(url, filename):
 
 def get_file_from_url(url: str) -> str:
     """
-        Returns a local filename corresponding to the contents of the URL.
-        The data is cached in caches/downloads/
+    Returns a local filename corresponding to the contents of the URL.
+    The data is cached in caches/downloads/
     """
     basename = get_md5(url)
     if "jpg" in url:
@@ -158,11 +158,11 @@ def get_sha12url():
 
 
 def require_resource(basename: str, destination: Optional[str] = None) -> str:
-    """ Basename: a file name how it is in urls.yaml
+    """Basename: a file name how it is in urls.yaml
 
-        If destination is None, it is saved in the global cache dir.
+    If destination is None, it is saved in the global cache dir.
 
-        It returns the destination file.
+    It returns the destination file.
     """
     urls = get_dropbox_urls()
     if not basename in urls:

@@ -3,18 +3,19 @@ import numpy as np
 
 from .types import NPImage, NPImageBGR, NPImageGray, NPImageRGB
 
-__all__ = ['gray2rgb', 'bgr_from_rgb', 'rgb_from_bgr', 'zoom_image']
+__all__ = ["gray2rgb", "bgr_from_rgb", "rgb_from_bgr", "zoom_image"]
+
 
 def gray2rgb(gray: NPImageGray) -> NPImageRGB:
     """
-        Converts a H x W grayscale into a H x W x 3 RGB image
-        by replicating the gray channel over R,G,B.
+    Converts a H x W grayscale into a H x W x 3 RGB image
+    by replicating the gray channel over R,G,B.
 
-        :param gray: grayscale
-        :type  gray: array[HxW](uint8),H>0,W>0
+    :param gray: grayscale
+    :type  gray: array[HxW](uint8),H>0,W>0
 
-        :return: A RGB image in shades of gray.
-        :rtype: array[HxWx3](uint8)
+    :return: A RGB image in shades of gray.
+    :rtype: array[HxWx3](uint8)
     """
     #    assert_gray_image(gray, 'input to gray2rgb')
 

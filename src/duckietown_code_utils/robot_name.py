@@ -14,10 +14,10 @@ class ThisIsNotADuckiebot(Exception):
 
 def get_current_robot_name():
     """
-        To be used by all nodes that want to know what is the current
-        robot name.
+    To be used by all nodes that want to know what is the current
+    robot name.
 
-        Raises ThisIsNotADuckiebot if this is not a Duckiebot.
+    Raises ThisIsNotADuckiebot if this is not a Duckiebot.
     """
 
     robot_name = os.environ.get("VEHICLE_NAME")

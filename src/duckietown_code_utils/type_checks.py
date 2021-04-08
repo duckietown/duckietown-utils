@@ -9,5 +9,9 @@ __all__ = [
 
 def dt_check_isinstance(what: str, x: object, t: Union[type, Tuple[type, ...]]):
     if not isinstance(x, t):
-        msg = 'I expected that "%s" is a %s, obtained %s.' % (what, t.__name__, type(x).__name__)
+        msg = 'I expected that "%s" is a %s, obtained %s.' % (
+            what,
+            t.__name__,
+            type(x).__name__,
+        )
         raise DTConfigException(msg)

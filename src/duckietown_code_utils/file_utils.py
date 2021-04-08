@@ -23,8 +23,8 @@ def write_str_to_file(data: str, filename: str):
 
 def write_data_to_file(data: bytes, filename: str):
     """
-        Writes the data to the given filename.
-        If the data did not change, the file is not touched.
+    Writes the data to the given filename.
+    If the data did not change, the file is not touched.
 
     """
     if not isinstance(data, bytes):

@@ -36,11 +36,11 @@ def instantiate(function_name: str, parameters: Dict[str, object]):
 
 def import_name(name: str):
     """
-        Loads the python object with the given name.
+    Loads the python object with the given name.
 
-        Note that "name" might be "module.module.name" as well.
+    Note that "name" might be "module.module.name" as well.
 
-        raise ValueError
+    raise ValueError
     """
     try:
         return __import__(name, fromlist=["dummy"])

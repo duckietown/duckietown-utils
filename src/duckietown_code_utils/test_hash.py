@@ -16,7 +16,6 @@ __all__ = [
     "create_hash_url",
     "parse_hash_url",
     "sha1_for_file_cached",
-
 ]
 
 
@@ -70,7 +69,14 @@ HashUrl = namedtuple("HashUrl", "size name sha1")
 
 
 def parse_hash_url(url):
-    parsed = (scheme, netloc, path, _parameters, query_string, _fragment) = urllib.parse.urlparse(url)
+    parsed = (
+        scheme,
+        netloc,
+        path,
+        _parameters,
+        query_string,
+        _fragment,
+    ) = urllib.parse.urlparse(url)
     #    print (scheme, netloc, path, parameters, query_string, fragment)
     assert scheme == "hash", parsed
     assert netloc == "sha1", parsed

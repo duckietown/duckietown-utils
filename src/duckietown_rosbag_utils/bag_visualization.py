@@ -4,19 +4,23 @@ from typing import Optional, Tuple
 
 
 import rosbag
-import  duckietown_code_utils as dtu
+import duckietown_code_utils as dtu
 from . import logger
 from .bag_reading import BagReadProxy
 
-__all__ = ["d8n_make_video_from_bag", "count_messages_in_slice", "get_summary_of_bag_messages"]
+__all__ = [
+    "d8n_make_video_from_bag",
+    "count_messages_in_slice",
+    "get_summary_of_bag_messages",
+]
 
 
 def count_messages_in_slice(bag_filename: str, topic: str, t0, t1, stop_at=None) -> Tuple[int, int, int]:
     """
-        Counts the number of messages in a slice of time.
-        Stops at stop_at, if given.
+    Counts the number of messages in a slice of time.
+    Stops at stop_at, if given.
 
-        Returns (count, total, stopped_early), where total is the total number in the log.
+    Returns (count, total, stopped_early), where total is the total number in the log.
     """
 
     bag0 = rosbag.Bag(bag_filename)
@@ -46,30 +50,35 @@ class NotEnoughFramesInSlice(Exception):
     pass
 
 
-def d8n_make_video_from_bag(bag_filename: str, topic: str, out: str, t0: Optional[float] = None,
-                            t1: Optional[float] = None):
+def d8n_make_video_from_bag(
+    bag_filename: str,
+    topic: str,
+    out: str,
+    t0: Optional[float] = None,
+    t1: Optional[float] = None,
+):
     """
-       Creates a video out of the topic in the bag.
+    Creates a video out of the topic in the bag.
 
-       topic: the topic name (any image-like topic)
-       out: an .mp4 file.
+    topic: the topic name (any image-like topic)
+    out: an .mp4 file.
 
-        Returns the name of the created file.
+     Returns the name of the created file.
 
-       raises NotEnoughFramesInSlice if there are less than 3 frames in slice
+    raises NotEnoughFramesInSlice if there are less than 3 frames in slice
 
 
-       Note that needs a bunch more dependencies to be installed.
+    Note that needs a bunch more dependencies to be installed.
 
-       Until we fix the dependencies:
+    Until we fix the dependencies:
 
-            sudo pip install SystemCmd==1.2 ros_node_utils==1.0 ConfTools==1.8 QuickApp==1.2.2
+         sudo pip install SystemCmd==1.2 ros_node_utils==1.0 ConfTools==1.8 QuickApp==1.2.2
 
-            sudo apt-get install -y  mplayer mencoder
+         sudo apt-get install -y  mplayer mencoder
 
-            sudo add-apt-repository ppa:mc3man/trusty-media
-            sudo apt-get update
-            sudo apt-get install -y ffmpeg
+         sudo add-apt-repository ppa:mc3man/trusty-media
+         sudo apt-get update
+         sudo apt-get install -y ffmpeg
 
 
 
@@ -89,7 +98,10 @@ def d8n_make_video_from_bag(bag_filename: str, topic: str, out: str, t0: Optiona
 
     actual_count, count, stopped_early = count_messages_in_slice(bag_filename, topic, t0, t1, stop_at=stop_at)
 
-    msg = "Creating video for topic %r, which has %d messages " "in the entire log." % (topic, count)
+    msg = "Creating video for topic %r, which has %d messages " "in the entire log." % (
+        topic,
+        count,
+    )
     logger.info(msg)
 
     if not stopped_early and (actual_count != count):

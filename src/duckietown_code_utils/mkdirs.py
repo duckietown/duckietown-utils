@@ -9,7 +9,7 @@ __all__ = [
 
 def d8n_make_sure_dir_exists(filename):
     """
-        Makes sure that the path to file exists, by creating directories.
+    Makes sure that the path to file exists, by creating directories.
 
     """
     dirname = os.path.dirname(filename)
@@ -21,9 +21,9 @@ def d8n_make_sure_dir_exists(filename):
 
 def d8n_mkdirs_thread_safe(dst):
     """
-        Make directories leading to 'dst' if they don't exist yet.
+    Make directories leading to 'dst' if they don't exist yet.
 
-        This version is thread safe.
+    This version is thread safe.
 
     """
     if dst == "" or os.path.exists(dst):

@@ -3,7 +3,7 @@ __all__ = [
 ]
 
 
-class DuckietownConstants(object):
+class DuckietownConstants:
     DUCKIETOWN_ROOT_variable = "DUCKIETOWN_ROOT"
     DUCKIETOWN_TMP_variable = "DUCKIETOWN_TMP"
     DUCKIEFLEET_ROOT_variable = "DUCKIEFLEET_ROOT"

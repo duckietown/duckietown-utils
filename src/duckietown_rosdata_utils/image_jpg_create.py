@@ -9,12 +9,13 @@ __all__ = [
 ]
 
 
-def d8_compressed_image_from_cv_image(image_cv: dtu.NPImageBGR, same_timestamp_as=None,
-                                      timestamp=None) -> CompressedImage:
+def d8_compressed_image_from_cv_image(
+    image_cv: dtu.NPImageBGR, same_timestamp_as=None, timestamp=None
+) -> CompressedImage:
     """
-        Create CompressedIamge from a CV BGR image.
+    Create CompressedIamge from a CV BGR image.
 
-        TODO: assumptions on format?
+    TODO: assumptions on format?
     """
 
     compress = cv2.imencode(".jpg", image_cv)[1]

@@ -2,7 +2,7 @@ import numpy as np
 
 from .types import NPImageRGB
 
-__all__ = ['rgb_from_pil']
+__all__ = ["rgb_from_pil"]
 
 
 def rgb_from_pil(im) -> NPImageRGB:

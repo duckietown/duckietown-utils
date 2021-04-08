@@ -19,7 +19,7 @@ __all__ = [
     "read_camera_info_from_bag",
 ]
 
-BagInfoDict = NewType('BagInfoDict', dict)
+BagInfoDict = NewType("BagInfoDict", dict)
 
 
 def rosbag_info_cached(filename: str) -> BagInfoDict:
@@ -66,7 +66,7 @@ def get_image_topic(bag: Union[rosbag.Bag, BagReadProxy]) -> str:
 
 def d8n_get_all_images_topic(bag_filename: str) -> List[Tuple[str, type]]:
     """
-        Returns the (name, type) of all topics that look like images.
+    Returns the (name, type) of all topics that look like images.
     """
 
     bag = rosbag.Bag(bag_filename)
@@ -75,8 +75,8 @@ def d8n_get_all_images_topic(bag_filename: str) -> List[Tuple[str, type]]:
 
 def d8n_get_all_images_topic_bag(bag: rosbag.Bag, min_messages: int = 0) -> List[Tuple[str, type]]:
     """
-        Returns the (name, type) of all topics that look like images
-        and that have nonzero message count.
+    Returns the (name, type) of all topics that look like images
+    and that have nonzero message count.
     """
     tat = bag.get_type_and_topic_info()
     consider_images = [

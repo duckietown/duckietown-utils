@@ -81,7 +81,9 @@ def deprecated(reason):
         def new_func2(*args, **kwargs):
             warnings.simplefilter("always", DeprecationWarning)
             warnings.warn(
-                fmt2.format(name=func2.__name__), category=DeprecationWarning, stacklevel=stacklevel
+                fmt2.format(name=func2.__name__),
+                category=DeprecationWarning,
+                stacklevel=stacklevel,
             )
             warnings.simplefilter("default", DeprecationWarning)
             return func2(*args, **kwargs)

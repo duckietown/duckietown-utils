@@ -47,9 +47,7 @@ def yaml_load_file(filename: str, plain_yaml: bool = False):
         raise ValueError(msg)
     with open(filename) as f:
         contents = f.read()
-    return interpret_yaml_file(
-        filename, contents, f=lambda _filename, data: data, plain_yaml=plain_yaml
-    )
+    return interpret_yaml_file(filename, contents, f=lambda _filename, data: data, plain_yaml=plain_yaml)
 
 
 Y = TypeVar("Y")
@@ -59,11 +57,11 @@ def interpret_yaml_file(
     filename: str, contents: str, f: Callable[[str, dict], Y], plain_yaml: bool = False
 ) -> Y:
     """
-        f is a function that takes
+    f is a function that takes
 
-            f(filename, data)
+        f(filename, data)
 
-        f can raise KeyError, or DTConfigException """
+    f can raise KeyError, or DTConfigException"""
     dt_check_isinstance("contents", contents, str)
     assert isinstance(contents, str), contents
     try:
@@ -114,12 +112,10 @@ def get_config_sources() -> List[str]:
     return sources
 
 
-def look_everywhere_for_config_files(
-    pattern: str, sources: Sequence[str]
-) -> Dict[str, str]:
+def look_everywhere_for_config_files(pattern: str, sources: Sequence[str]) -> Dict[str, str]:
     """
-        Looks for all the configuration files by the given pattern.
-        Returns a dictionary filename -> contents.
+    Looks for all the configuration files by the given pattern.
+    Returns a dictionary filename -> contents.
     """
     check_isinstance(sources, list)
 
@@ -136,14 +132,12 @@ def look_everywhere_for_config_files(
     return results
 
 
-def look_everywhere_for_config_files2(
-    pattern: str, all_yaml: Dict[str, str]
-) -> Dict[str, str]:
+def look_everywhere_for_config_files2(pattern: str, all_yaml: Dict[str, str]) -> Dict[str, str]:
     """
-        Looks for all the configuration files by the given pattern.
-        Returns a dictionary filename -> contents.
+    Looks for all the configuration files by the given pattern.
+    Returns a dictionary filename -> contents.
 
-        all_yaml = filename -> contents.
+    all_yaml = filename -> contents.
     """
 
     results = OrderedDict()
@@ -159,8 +153,8 @@ def look_everywhere_for_files(
     patterns: List[str], strict: bool = False, silent: bool = False
 ) -> Dict[str, str]:
     """
-        Looks for all the bag files
-        Returns a dict of basename -> filename.
+    Looks for all the bag files
+    Returns a dict of basename -> filename.
     """
     sources = []
     # We look in $DUCKIETOWN_ROOT/catkin_ws/src

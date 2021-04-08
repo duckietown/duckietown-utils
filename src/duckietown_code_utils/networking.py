@@ -13,8 +13,8 @@ use_url = "http://35.156.29.30/~duckietown/ping"
 
 @memoize_simple
 def is_internet_connected(url=use_url, timeout=3):
-    """ Use an https server so we know that we are not fooled by
-        over-reaching academic network admins """
+    """Use an https server so we know that we are not fooled by
+    over-reaching academic network admins"""
     socket.setdefaulttimeout(timeout)
     try:
         try:

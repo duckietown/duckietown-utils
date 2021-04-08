@@ -6,7 +6,7 @@ logger.setLevel(logging.DEBUG)
 try:
     import rosbag
 except ImportError:
-    logger.warn('Could not import rosbag; disabling ROS utils')
+    logger.warn("Could not import rosbag; disabling ROS utils")
 else:
 
     from .bag_info import *

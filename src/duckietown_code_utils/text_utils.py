@@ -178,8 +178,8 @@ def id_from_basename_pattern(basename, pattern):
 
 def remove_prefix(s, prefix):
     """
-        Removes a prefix from a string.
-        Raises ValueError if the prefix is not there.
+    Removes a prefix from a string.
+    Raises ValueError if the prefix is not there.
     """
     if s.startswith(prefix):
         return s[len(prefix) :]
@@ -190,8 +190,8 @@ def remove_prefix(s, prefix):
 
 def remove_suffix(s, suffix):
     """
-        Removes a prefix from a string.
-        Raises ValueError if the prefix is not there.
+    Removes a prefix from a string.
+    Raises ValueError if the prefix is not there.
     """
     if s.endswith(suffix):
         return s[: -len(suffix)]

@@ -18,22 +18,18 @@ def d8_image_zoom_linear(cv_image: NPImage, ratio: int = 4) -> NPImage:
     return res
 
 
-def d8_image_resize_no_interpolation(
-    cv_image: NPImage, new_shape: Tuple[int, int]
-) -> NPImage:
+def d8_image_resize_no_interpolation(cv_image: NPImage, new_shape: Tuple[int, int]) -> NPImage:
     """
-        new_shape = (H, W)
+    new_shape = (H, W)
     """
     H, W = new_shape
     res = cv2.resize(cv_image, (W, H), interpolation=cv2.INTER_NEAREST)
     return res
 
 
-def d8_image_resize_fit(
-    cv_image: NPImage, W: int, interpolation=cv2.INTER_LINEAR
-) -> NPImage:
+def d8_image_resize_fit(cv_image: NPImage, W: int, interpolation=cv2.INTER_LINEAR) -> NPImage:
     """
-        Resize the image such that it fits in exactly width = W.
+    Resize the image such that it fits in exactly width = W.
     """
     H0, W0 = cv_image.shape[:2]
     H = int(W * 1.0 / W0 * H0)
@@ -43,7 +39,7 @@ def d8_image_resize_fit(
 
 def d8_image_resize_fit_height(cv_image: NPImage, H: int) -> NPImage:
     """
-        Resize the image such that it fits in exactly width = W.
+    Resize the image such that it fits in exactly width = W.
     """
     H0, W0 = cv_image.shape[:2]
     W = int(H * 1.0 / H0 * W0)

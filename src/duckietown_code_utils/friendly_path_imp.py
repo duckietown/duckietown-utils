@@ -19,9 +19,9 @@ __all__ = [
 
 def friendly_path(path: str, use_environment: bool = True) -> str:
     """
-        Gets a friendly representation of the given path,
-        using relative paths or environment variables
-        (if use_environment = True).
+    Gets a friendly representation of the given path,
+    using relative paths or environment variables
+    (if use_environment = True).
     """
     # TODO: send extra rules
 

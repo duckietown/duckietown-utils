@@ -7,16 +7,15 @@ import time
 
 import cv2
 import numpy as np
-
 from PIL import ImageFile
 
-from .types import NPImageBGR, NPImageRGB
 from .contracts_ import contract
 from .deprecation import deprecated
 from .disk_hierarchy import tmpfile
 from .file_utils import read_bytes_from_file, write_data_to_file
 from .logging_logger import logger
 from .mkdirs import d8n_make_sure_dir_exists
+from .types import NPImageBGR, NPImageRGB
 
 
 def jpg_from_bgr(bgr: NPImageBGR) -> bytes:
@@ -39,11 +38,11 @@ def image_cv_from_jpg(data: bytes) -> NPImageBGR:
     return bgr_from_jpg(data)
 
 
-def bgr_from_png(data: bytes) ->NPImageBGR:
+def bgr_from_png(data: bytes) -> NPImageBGR:
     return _bgr_from_file_data(data)
 
 
-def bgr_from_jpg(data: bytes) ->NPImageBGR:
+def bgr_from_jpg(data: bytes) -> NPImageBGR:
     return _bgr_from_file_data(data)
 
 
@@ -59,7 +58,7 @@ def _bgr_from_file_data(data: bytes) -> NPImageBGR:
 
 
 @contract(fn=str, returns="array[HxWx3](uint8)")
-def bgr_from_jpg_fn(fn: str) ->NPImageBGR:
+def bgr_from_jpg_fn(fn: str) -> NPImageBGR:
     """ Read a JPG BGR from a file """
     if not os.path.exists(fn):
         msg = "File does not exist: %s" % fn
@@ -84,7 +83,7 @@ def write_bgr_to_file_as_jpg(image_cv: NPImageBGR, fn: str):
     write_data_to_file(data, fn)
 
 
-def bgr_from_raspistill(frame=None): # TODO: move away
+def bgr_from_raspistill(frame=None):  # TODO: move away
     import picamera
 
     with tmpfile(".jpg") as filename:

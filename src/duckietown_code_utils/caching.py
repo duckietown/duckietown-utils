@@ -12,8 +12,8 @@ __all__ = [
 
 def get_cached(cache_name, f, quiet="not-given", just_delete=False):
     """
-        Caches the result of f() in a file called
-            ${DUCKIETOWN_ROOT}/caches/![cache_name].cache.pickle
+    Caches the result of f() in a file called
+        ${DUCKIETOWN_ROOT}/caches/![cache_name].cache.pickle
     """
 
     cache_dir = get_duckietown_cache_dir()

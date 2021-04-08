@@ -70,14 +70,14 @@ def system_cmd_result(
     env=None,
 ):
     """
-        Returns the structure CmdResult; raises CmdException.
-        Also OSError are captured.
-        KeyboardInterrupt is passed through unless specified
+    Returns the structure CmdResult; raises CmdException.
+    Also OSError are captured.
+    KeyboardInterrupt is passed through unless specified
 
-        If the program cannot be called at all (OSError for permissions,
-        existence, it raises CouldNotCallProgram).
+    If the program cannot be called at all (OSError for permissions,
+    existence, it raises CouldNotCallProgram).
 
-        :param write_stdin: A string to write to the process.
+    :param write_stdin: A string to write to the process.
     """
     if not os.path.exists(cwd):
         msg = "Cwd does not exist."
@@ -182,9 +182,7 @@ def system_cmd_result(
     if s:
         logger.debug(s)
 
-    res = CmdResult(
-        cwd, cmd, ret, rets, interrupted, stdout=captured_stdout, stderr=captured_stderr
-    )
+    res = CmdResult(cwd, cmd, ret, rets, interrupted, stdout=captured_stdout, stderr=captured_stderr)
 
     if raise_on_error:
         if res.ret != 0:
@@ -218,9 +216,9 @@ def wrap(header, s, N=30):
 
 
 def result_format(cwd, cmd, ret, stdout=None, stderr=None):
-    msg = (
-        "Command:\n\t{cmd}\n" "in directory:\n\t{cwd}\nfailed with error {ret}"
-    ).format(cwd=cwd, cmd=cmd, ret=ret)
+    msg = ("Command:\n\t{cmd}\n" "in directory:\n\t{cwd}\nfailed with error {ret}").format(
+        cwd=cwd, cmd=cmd, ret=ret
+    )
     if stdout is not None:
         msg += "\n" + wrap("stdout", stdout)
     if stderr is not None:

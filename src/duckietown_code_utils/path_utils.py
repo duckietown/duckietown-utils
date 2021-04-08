@@ -9,10 +9,10 @@ __all__ = [
 
 def expand_all(filename):
     """
-        Expands ~ and ${ENV} in the string.
+    Expands ~ and ${ENV} in the string.
 
-        Raises DTConfigException if some environment variables
-        are not expanded.
+    Raises DTConfigException if some environment variables
+    are not expanded.
 
     """
     fn = filename
@@ -22,7 +22,6 @@ def expand_all(filename):
         msg = "Could not expand all variables in path %r." % fn
         raise DTConfigException(msg)
     return fn
-
 
 
 # def display_filename(filename):

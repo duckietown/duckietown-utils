@@ -21,9 +21,9 @@ def _get_str(x, informal):
 
 def format_list_long(l, informal=False):
     """
-        - My
-          first
-        - Second
+    - My
+      first
+    - Second
     """
     res = ""
     for i, value in enumerate(l):
@@ -64,13 +64,13 @@ def format_obs(d, informal=False):
 
 
 def raise_wrapped(etype, e, msg, compact=False, exc=None, **kwargs) -> NoReturn:
-    """ Raises an exception of type etype by wrapping
-        another exception "e" with its backtrace and adding
-        the objects in kwargs as formatted by format_obs.
+    """Raises an exception of type etype by wrapping
+    another exception "e" with its backtrace and adding
+    the objects in kwargs as formatted by format_obs.
 
-        if compact = False, write the whole traceback, otherwise just str(e).
+    if compact = False, write the whole traceback, otherwise just str(e).
 
-        exc = output of sys.exc_info()
+    exc = output of sys.exc_info()
     """
 
     e = raise_wrapped_make(etype, e, msg, compact=compact, **kwargs)
@@ -108,8 +108,8 @@ def raise_wrapped_make(etype, e, msg, compact=False, **kwargs):
 def raise_desc(etype, msg, args_first=False, **kwargs):
     """
 
-        Example:
-            raise_desc(ValueError, "I don't know", a=a, b=b)
+    Example:
+        raise_desc(ValueError, "I don't know", a=a, b=b)
     """
     assert isinstance(msg, str), type(msg)
     s1 = msg
@@ -186,8 +186,8 @@ def describe_type(x):
 
 
 def describe_value(x, clip=80):
-    """ Describes an object, for use in the error messages.
-        Short description, no multiline.
+    """Describes an object, for use in the error messages.
+    Short description, no multiline.
     """
     if hasattr(x, "shape") and hasattr(x, "dtype"):
         shape_desc = "x".join(str(i) for i in x.shape)

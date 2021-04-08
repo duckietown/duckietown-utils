@@ -28,8 +28,8 @@ def get_duckietown_root() -> str:
 
 def get_duckiefleet_root() -> str:
     """
-        Returns the path of DUCKIEFLEET_ROOT and checks it exists.
-        Raises DTConfigException.
+    Returns the path of DUCKIEFLEET_ROOT and checks it exists.
+    Raises DTConfigException.
     """
 
     # If the environment variable is set:
@@ -64,9 +64,9 @@ def get_duckiefleet_root() -> str:
 
 def get_duckietown_data_dirs() -> List[str]:
     """
-        Returns the paths in DUCKIETOWN_DATA and checks they exists.
+    Returns the paths in DUCKIETOWN_DATA and checks they exists.
 
-        Raises DTConfigException if the var or dirs do not exist.
+    Raises DTConfigException if the var or dirs do not exist.
     """
 
     v = DuckietownConstants.DUCKIETOWN_DATA_variable
@@ -103,9 +103,7 @@ def get_duckietown_local_log_downloads() -> str:
 def get_machines_files_path() -> str:
     """ Gets the path to the machines file. It might not exist. """
     duckietown_root = get_duckietown_root()
-    machines = os.path.join(
-        duckietown_root, DuckietownConstants.machines_path_rel_to_root
-    )
+    machines = os.path.join(duckietown_root, DuckietownConstants.machines_path_rel_to_root)
     return machines
 
 
@@ -122,10 +120,10 @@ def get_catkin_ws_src() -> str:
 
 def get_list_of_packages_in_catkin_ws() -> Dict[str, str]:
     """
-        Returns an ordered dictionary <package name>: <package dir>
-        of packages that exist in catkin_ws/src.
+    Returns an ordered dictionary <package name>: <package dir>
+    of packages that exist in catkin_ws/src.
 
-        Raises DTConfigException if $DUCKIETOWN_ROOT is not set.
+    Raises DTConfigException if $DUCKIETOWN_ROOT is not set.
     """
     src = get_catkin_ws_src()
     package_files = locate_files(src, "package.xml")
@@ -160,8 +158,8 @@ def is_ignored_by_catkin(dn: str) -> bool:
 
 def _get_dir(variable_name: str) -> str:
     """
-        Raises DTConfigException if it does not exist or the environment
-        variable is not set.
+    Raises DTConfigException if it does not exist or the environment
+    variable is not set.
     """
     if not variable_name in os.environ:
         msg = "Environment variable {!r} not defined.".format(variable_name)

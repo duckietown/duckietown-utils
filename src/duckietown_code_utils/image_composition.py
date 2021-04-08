@@ -9,10 +9,11 @@ __all__ = [
 ]
 
 
-def make_images_grid(images: List[NPImage], cols: Optional[int] = None, pad: int = 0,
-                     bgcolor=None) -> NPImage:
+def make_images_grid(
+    images: List[NPImage], cols: Optional[int] = None, pad: int = 0, bgcolor=None
+) -> NPImage:
     """
-        bgcolor: uint8 values
+    bgcolor: uint8 values
     """
     if bgcolor is None:
         bgcolor = [128, 128, 128]
@@ -93,8 +94,14 @@ def rgb_pad(height: int, width: int, color) -> NPImage:
     return pad
 
 
-def image_border(rgb: NPImage, left: int = 0, right: int = 0, top: int = 0, bottom: int = 0,
-                 color=None) -> NPImage:
+def image_border(
+    rgb: NPImage,
+    left: int = 0,
+    right: int = 0,
+    top: int = 0,
+    bottom: int = 0,
+    color=None,
+) -> NPImage:
     if color is None:
         color = [126, 128, 128]
     orig_shape = rgb.shape
@@ -134,4 +141,4 @@ def place_at(canvas: NPImage, image, xpix, ypix):
     ysize = min(canvas.shape[0] - ypix, image.shape[0])
     if len(image.shape) == 2:
         image = image.reshape((image.shape[0], image.shape[1], 1))
-    canvas[ypix: (ypix + ysize), xpix: (xpix + xsize), 0:3] = image[0:ysize, 0:xsize, :]
+    canvas[ypix : (ypix + ysize), xpix : (xpix + xsize), 0:3] = image[0:ysize, 0:xsize, :]
