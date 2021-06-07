@@ -33,10 +33,11 @@ version = get_version_from_source("src/duckietown_code_utils/__init__.py")
 install_requires = [
     "PyGeometry-z6",
     "opencv-python",
-    "comptests-z6",
     "ruamel.yaml",
 ]
-tests_require = []
+tests_require = [
+    "comptests-z6",
+]
 
 # compile description
 underline = "=" * (len(package_name) + len(short_description) + 2)
