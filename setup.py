@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-line = "daffy"
+line = "ente"
 package_name = f"duckietown-utils-{line}"
 library_webpage = "http://github.com/duckietown/duckietown-utils"
 maintainer = "Mack"
