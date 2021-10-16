@@ -20,7 +20,7 @@ jobs:
           command: |
             echo PATH=$PATH
             apt-get update
-            apt-get install -y python-opencv
+            apt-get install -y python3-opencv
             pip install -q --user --upgrade -r requirements.txt
 
       - run:
