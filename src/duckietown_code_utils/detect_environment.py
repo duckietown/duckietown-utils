@@ -6,7 +6,7 @@ __all__ = [
 
 
 def on_duckiebot():
-    """ True if we are on a Duckiebot. """
+    """True if we are on a Duckiebot."""
     import platform
 
     proc = platform.processor()
@@ -16,12 +16,12 @@ def on_duckiebot():
 
 
 def on_laptop():
-    """ True if we are on a laptop """
+    """True if we are on a laptop"""
     return not on_circle() and not on_duckiebot()
 
 
 def on_circle():
-    """ True if we are running tests on the cloud. """
+    """True if we are running tests on the cloud."""
     import os
 
     return "CIRCLECI" in os.environ

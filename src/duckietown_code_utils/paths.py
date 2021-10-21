@@ -22,7 +22,7 @@ __all__ = [
 
 
 def get_duckietown_root() -> str:
-    """ Returns the path of DUCKIETOWN_ROOT and checks it exists """
+    """Returns the path of DUCKIETOWN_ROOT and checks it exists"""
     return _get_dir(DuckietownConstants.DUCKIETOWN_ROOT_variable)
 
 
@@ -92,7 +92,7 @@ def get_duckietown_cache_dir() -> str:
 
 
 def get_duckietown_local_log_downloads() -> str:
-    """ Returns the directory to use for local downloads of logs"""
+    """Returns the directory to use for local downloads of logs"""
     temp_dir = get_dt_tmp_dir()
     d = os.path.join(temp_dir, "downloads")
     if not os.path.exists(d):
@@ -101,14 +101,14 @@ def get_duckietown_local_log_downloads() -> str:
 
 
 def get_machines_files_path() -> str:
-    """ Gets the path to the machines file. It might not exist. """
+    """Gets the path to the machines file. It might not exist."""
     duckietown_root = get_duckietown_root()
     machines = os.path.join(duckietown_root, DuckietownConstants.machines_path_rel_to_root)
     return machines
 
 
 def get_catkin_ws_src() -> str:
-    """ Returns the path to the src/ dir in catkin_ws """
+    """Returns the path to the src/ dir in catkin_ws"""
     if "CATKIN_WS_DIR" in os.environ:
         d = os.environ["CATKIN_WS_DIR"]
         return os.path.join(d, "src")
@@ -145,7 +145,7 @@ def get_list_of_packages_in_catkin_ws() -> Dict[str, str]:
 
 
 def is_ignored_by_catkin(dn: str) -> bool:
-    """ Returns true if the directory is inside one with CATKIN_IGNORE """
+    """Returns true if the directory is inside one with CATKIN_IGNORE"""
     while dn != "/":
         i = os.path.join(dn, "CATKIN_IGNORE")
         if os.path.exists(i):

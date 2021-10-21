@@ -6,7 +6,7 @@ __all__ = [
 
 
 class Configurable(object):
-    """ Utility class to read configuration """
+    """Utility class to read configuration"""
 
     def __init__(self, param_names, configuration0):
 

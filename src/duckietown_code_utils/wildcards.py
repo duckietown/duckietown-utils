@@ -31,7 +31,7 @@ def expand_string(x, options):
 
 @memoize_simple
 def wildcard_to_regexp(arg):
-    """ Returns a regular expression from a shell wildcard expression. """
+    """Returns a regular expression from a shell wildcard expression."""
     import re
 
     return re.compile("\A" + arg.replace("*", ".*") + "\Z")

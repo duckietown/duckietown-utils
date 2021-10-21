@@ -202,7 +202,7 @@ def look_everywhere_for_files(
 
 
 def same_file_content(a, b):
-    """ Just check the size """
+    """Just check the size"""
     s1 = os.stat(a).st_size
     s2 = os.stat(b).st_size
     return s1 == s2

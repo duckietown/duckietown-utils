@@ -199,7 +199,7 @@ def remove_empty_lines(s: str) -> str:
 
 
 def cmd2args(s: Union[List[str], str]) -> List[str]:
-    """ if s is a list, leave it like that; otherwise split()"""
+    """if s is a list, leave it like that; otherwise split()"""
     if isinstance(s, list):
         return s
     elif isinstance(s, str):
@@ -261,7 +261,7 @@ def indent_with_label(s, first):
 
 
 def copyable_cmd(cmds: List[str]) -> str:
-    """ Returns the commands as a copyable string. """
+    """Returns the commands as a copyable string."""
 
     @contract(x="str")
     def copyable(x):

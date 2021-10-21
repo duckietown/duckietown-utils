@@ -143,7 +143,7 @@ class Slice(Spec):
 
 
 class Shuffle(Spec):
-    """ Sort entries by name """
+    """Sort entries by name"""
 
     def __init__(self, spec):
         Spec.__init__(self, [spec])

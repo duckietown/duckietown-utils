@@ -30,7 +30,7 @@ def norm_angle(theta):
 
 @contract(theta="array[N]", returns="array[N]")
 def norm_angle_v(theta):
-    """ Normalizes a vector of thetas such that all entries are in [-pi,pi] """
+    """Normalizes a vector of thetas such that all entries are in [-pi,pi]"""
     pi = np.pi
     closest = np.round(theta / (2 * pi))
     theta2 = theta - closest * 2 * pi  # FIXME: this is not used

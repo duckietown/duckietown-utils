@@ -48,7 +48,7 @@ def bgr_from_jpg(data: bytes) -> NPImageBGR:
 
 
 def _bgr_from_file_data(data: bytes) -> NPImageBGR:
-    """ Returns an OpenCV BGR image from a string """
+    """Returns an OpenCV BGR image from a string"""
     s = np.frombuffer(data, np.uint8)
     bgr = cv2.imdecode(s, cv2.IMREAD_COLOR)
     if bgr is None:
@@ -60,7 +60,7 @@ def _bgr_from_file_data(data: bytes) -> NPImageBGR:
 
 @contract(fn=str, returns="array[HxWx3](uint8)")
 def bgr_from_jpg_fn(fn: str) -> NPImageBGR:
-    """ Read a JPG BGR from a file """
+    """Read a JPG BGR from a file"""
     if not os.path.exists(fn):
         msg = "File does not exist: %s" % fn
         raise ValueError(msg)
@@ -84,7 +84,7 @@ def write_jpg_to_file(image_cv: NPImageBGR, fn: str):
 
 
 def write_bgr_to_file_as_jpg(image_cv: NPImageBGR, fn: str):
-    """ Assuming image_cv is a BGR image, write to the file fn. """
+    """Assuming image_cv is a BGR image, write to the file fn."""
     data = jpg_from_bgr(image_cv)
     write_data_to_file(data, fn)
 
@@ -113,7 +113,7 @@ def bgr_from_raspistill(frame=None):  # TODO: move away
 
 
 def rgb_from_jpg_by_PIL(data) -> NPImageRGB:
-    """ Warning: this returns RGB """
+    """Warning: this returns RGB"""
 
     parser = ImageFile.Parser()
     parser.feed(data)
@@ -146,7 +146,7 @@ Try to install using:
 
 
 def image_clip_255(image_float):
-    """ Clips to 0,255 and converts to uint8 """
+    """Clips to 0,255 and converts to uint8"""
     h, w, _ = image_float.shape
     res = np.zeros((h, w, 3), dtype=np.uint8)
     np.clip(image_float, 0, 255, out=res)

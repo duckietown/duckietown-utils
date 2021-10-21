@@ -27,7 +27,7 @@ def indent(s, prefix, first=None):
 
 
 def seconds_as_ms(s):
-    """ Returns a value in seconds as "XXX ms". """
+    """Returns a value in seconds as "XXX ms"."""
     if s is None:
         return "n/a"
     return "%.1f ms" % (s * 1000)
@@ -54,7 +54,7 @@ def remove_escapes(s):
 
 
 def get_length_on_screen(s):
-    """ Returns the length of s without the escapes """
+    """Returns the length of s without the escapes"""
     return len(remove_escapes(s))
 
 
@@ -207,7 +207,7 @@ def remove_prefix_suffix(s, prefix, suffix):
 
 
 def string_split(s, sub):
-    """ Assuming s == a + sub + b, returns a,b """
+    """Assuming s == a + sub + b, returns a,b"""
     if not sub in s:
         msg = "Substring %r not found in %r." % (sub, s)
         raise ValueError(msg)

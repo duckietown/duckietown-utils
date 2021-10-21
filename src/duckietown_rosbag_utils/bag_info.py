@@ -55,7 +55,7 @@ def which_robot(bag: Union[rosbag.Bag, BagReadProxy]) -> str:
 
 
 def get_image_topic(bag: Union[rosbag.Bag, BagReadProxy]) -> str:
-    """ Returns the name of the topic for the main camera """
+    """Returns the name of the topic for the main camera"""
     topics = list(bag.get_type_and_topic_info()[1].keys())
     for t in topics:
         if "camera_node/image/compressed" in t:

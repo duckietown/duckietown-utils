@@ -14,7 +14,7 @@ __all__ = [
 
 class D8App(QuickAppBase, ABC):
     def get_from_args_or_env(self, argname, envname):
-        """ Gets either the argumnent or the environment variable."""
+        """Gets either the argumnent or the environment variable."""
         options = [getattr(self.options, argname), os.environ.get(envname, None)]
         options = [_ for _ in options if _ and _.strip()]
         if not options:

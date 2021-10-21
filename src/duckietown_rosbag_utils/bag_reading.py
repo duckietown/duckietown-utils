@@ -66,7 +66,7 @@ class BagReadProxy:
         return self.read_to_absolute
 
     def get_message_count(self, topic_filters=None):
-        """ Returns approximate message count, compensating with ratio. """
+        """Returns approximate message count, compensating with ratio."""
         n = self.bag.get_message_count(topic_filters)
         n1 = int(np.ceil(self.fraction * n))
         #         print('n = %s  fraction = %s  n1 = %s' % (n, self.fraction, n1) )

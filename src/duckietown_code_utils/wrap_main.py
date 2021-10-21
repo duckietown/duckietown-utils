@@ -8,7 +8,7 @@ __all__ = ["wrap_main"]
 
 def wrap_main(f):
     # deprecated
-    """ Wraps a main function and colors output """
+    """Wraps a main function and colors output"""
     try:
         f()
     except Exception as e:

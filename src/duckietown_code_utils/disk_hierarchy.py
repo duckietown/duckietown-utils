@@ -80,7 +80,7 @@ def create_tmpdir(prefix="tmpdir"):
 
 @contextmanager
 def tmpfile(suffix):
-    """ Yields the name of a temporary file """
+    """Yields the name of a temporary file"""
     temp_file = NamedTemporaryFile(suffix=suffix)
     yield temp_file.name
     temp_file.close()

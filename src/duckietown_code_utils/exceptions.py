@@ -5,7 +5,7 @@ from .logging_logger import logger
 
 
 class DTException(Exception):
-    """ All exceptions derive from this one. """
+    """All exceptions derive from this one."""
 
 
 class DTUserError(DTException):
@@ -29,7 +29,7 @@ class DTBadData(DTException):
 
 
 class DTNoMatches(DTUserError):
-    """ Could not find any matches for the user selector """
+    """Could not find any matches for the user selector"""
 
 
 def wrap_script_entry_point(function, exceptions_no_traceback=(DTUserError,)):

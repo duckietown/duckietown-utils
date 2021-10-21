@@ -36,7 +36,7 @@ def format_list_long(l, informal=False):
 
 
 def format_obs(d, informal=False):
-    """ Shows objects values and typed for the given dictionary """
+    """Shows objects values and typed for the given dictionary"""
     if not d:
         return str(d)
 
@@ -83,7 +83,7 @@ def raise_wrapped(etype, e, msg, compact=False, exc=None, **kwargs) -> NoReturn:
 
 
 def raise_wrapped_make(etype, e, msg, compact=False, **kwargs):
-    """ Constructs the exception to be thrown by raise_wrapped() """
+    """Constructs the exception to be thrown by raise_wrapped()"""
     assert isinstance(e, BaseException), type(e)
     assert isinstance(msg, str), type(msg)
     s = msg
@@ -142,7 +142,7 @@ def raise_x_not_found(what, x, iterable, exception=ValueError):
 
 
 def x_not_found(what, x, iterable):
-    """ Shortcut for creating pretty error messages. """
+    """Shortcut for creating pretty error messages."""
     # TODO: add guess in case of typos
     options = aslist(iterable)
 
@@ -161,7 +161,7 @@ def check_isinstance(ob, expected, **kwargs):
 
 
 def raise_type_mismatch(ob, expected, **kwargs):
-    """ Raises an exception concerning ob having the wrong type. """
+    """Raises an exception concerning ob having the wrong type."""
     e = "Object not of expected type:"
     e += f"\n  expected: {expected}"
     e += f"\n  obtained: {type(ob)}"
@@ -170,7 +170,7 @@ def raise_type_mismatch(ob, expected, **kwargs):
 
 
 def describe_type(x):
-    """ Returns a friendly description of the type of x. """
+    """Returns a friendly description of the type of x."""
 
     if hasattr(x, "__class__"):
         c = x.__class__
