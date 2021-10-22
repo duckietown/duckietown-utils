@@ -34,6 +34,7 @@ install_requires = [
     "PyGeometry-z6",
     "opencv-python",
     "ruamel.yaml",
+    "Pillow",
 ]
 tests_require = [
     "comptests-z6",
