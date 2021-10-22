@@ -32,9 +32,19 @@ version = get_version_from_source("src/duckietown_code_utils/__init__.py")
 
 install_requires = [
     "PyGeometry-z6",
+    "procgraph-z6",
+    "QuickApp-z6",
     "opencv-python",
     "ruamel.yaml",
     "Pillow",
+    "frozendict",
+    "numpy",
+    "decorator",
+    "matplotlib",
+    "PyContracts3",
+    "scipy",
+    "jpeg4py",
+    "PyYAML",
 ]
 tests_require = [
     "comptests-z6",
