@@ -5,7 +5,7 @@ many Python modules in Duckietown.
 
 """
 
-__version__ = "6.0.23"
+__version__ = "6.0.24"
 
 # Use the PyGeometry library as dtu.geo
 import geometry as geo
