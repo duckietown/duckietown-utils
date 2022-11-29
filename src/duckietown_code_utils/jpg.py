@@ -73,7 +73,7 @@ def rgb_from_jpg_fn(fn: str) -> NPImageRGB:
     return rgb_from_bgr(m)
 
 
-@deprecated("Use bgr_from_jpg()")
+@deprecated("Use bgr_from_jpg_fn()")
 def image_cv_from_jpg_fn(fn: str) -> NPImageBGR:
     return bgr_from_jpg_fn(fn)
 
