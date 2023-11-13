@@ -43,7 +43,6 @@ def yaml_dump_pretty(ob) -> str:
     from ruamel.yaml.compat import StringIO
 
     d = YAML(typ="rt")
-    d.allow_unicode = False
     stream = StringIO()
     d.dump(ob, stream)
     return stream.getvalue()
