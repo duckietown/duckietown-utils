@@ -30,6 +30,7 @@ def yaml_load_plain(s: str):
 def yaml_dump(s) -> str:
     from ruamel.yaml import YAML
     from ruamel.yaml.compat import StringIO
+    # Ref: https://yaml.readthedocs.io/en/latest/example/#output-of-dump-as-a-string
 
     d = YAML(typ="rt")
     d.allow_unicode = False
